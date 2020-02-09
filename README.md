@@ -28,13 +28,13 @@ Links:
 Набор товаров производимых фабрикой, отгружаемый клиенту по определенной стоимости
         
 Fields:
-* listOfGoods;
+* goodsMap;
 * sum;
 * currency;
-* dataOfTheOrder;
+* dateOfTheOrder;
 * wageType(postponement, prepay, barter);
-* client;
-* condition(onApprovement, assembling, readyForShipment, shipped);
+* clientId;
+* orderCondition(onApprovement, assembling, readyForShipment, shipped);
 
 Links:
 * client;
@@ -99,7 +99,7 @@ Response: ```201 Created```
 }
 ```
 
-## CP-2 Как "клиент" хочу заказать 10 сувенирных бутылок;
+## CP-2 Как "клиент" хочу заказать 10 сувенирных бутылок, 5 бочек и 2 диспенсера;
 
 Request:
 ```
@@ -107,14 +107,17 @@ POST /componentsPlant/client/order
 ```
 ```json
 {
-        "name" : "Bottle",
-        "type" : "glassGoods",
-        "releaseCost" : 100,
-        "capasity" : 10,
-        "quantity" : 10
+        "goodsMap" : {
+                  "345" : "10",
+                 "232" : "5",
+                 "122" : "2"
+        },
+        "sum" : 16000,
+        "currency" : "BYR",
+        "clientId" : 1
 }
 ```
-Response: ```200 OK```
+Response: ```201 Created```
 ```json
 {
     "order" : 123
