@@ -1,5 +1,11 @@
 package com.example.componentsplant.dto;
 
 public enum OrderCondition {
-    ONAPPROVEMENT, ASSEMBLING, READYFORSHIPMENT, SHIPPED
+    ONAPPROVEMENT("onApprovement"), ASSEMBLING("assembling"), READYFORSHIPMENT("readyForShipment"), SHIPPED("shipped");
+
+    private String name;
+
+    OrderCondition(String name) {
+        this.name = name;
+    }
 }
