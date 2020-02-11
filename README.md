@@ -28,13 +28,14 @@ Links:
 Набор товаров производимых фабрикой, отгружаемый клиенту по определенной стоимости
         
 Fields:
-* goodsMap;
 * sum;
 * currency;
 * dateOfTheOrder;
 * wageType(postponement, prepay, barter);
 * clientId;
 * orderCondition(onApprovement, assembling, readyForShipment, shipped);
+* orderID
+* goodsMap;
 
 Links:
 * client;
@@ -46,7 +47,7 @@ Links:
 Fields:
 * name;
 * type;
-* descryption;
+* description;
 * netCost;
 * releaseCost;
 * storeID;
@@ -78,7 +79,7 @@ Links:
 Request:
 
 ```
-POST /componentsPlant/client/sign-up
+POST /componentsPlant/clients/sign-up
 ```
 ```json
 {
@@ -103,7 +104,7 @@ Response: ```201 Created```
 
 Request:
 ```
-POST /componentsPlant/client/order
+POST /componentsPlant/clients/1/orders
 ```
 ```json
 {
@@ -120,29 +121,29 @@ POST /componentsPlant/client/order
 Response: ```201 Created```
 ```json
 {
-    "order" : 123
+    "orderID" : 123
 }
 ```
 
-## CP-3 Как "клиент" хочу посмотреть историю моих заказов за февраль месяц;
+## CP-3 Как "клиент" хочу посмотреть историю моих заказов;
 
 Request:
 
 ```
-GET /componentsPlant/client/1/myOrders?date=02-2020
+GET /componentsPlant/clients/1/
 ```
 Response: ```200 OK```
 ```json
 [
         {
-                "id" : 1,
+                "orderID" : 1,
                 "sum" : 1000,
-                "condition" : "shipped"
+                "orderCondition" : "SHIPPED"
         },
         {
-                "id" : 2,
+                "orderID" : 2,
                 "sum" : 2500,
-                "condition" : "readyForShipment"
+                "orderCondition" : "READYFORSHIPMENT"
         }
 ]
 ```
@@ -164,12 +165,12 @@ POST /componentsPlant/admin/goods/timberGoods
 Response: ```200 OK```
 ```json
 {
-    "id" : 321
+    "storeID" : 321
 }
 ```
 
 
-## CP-5 Как "администратор" хочу посмотреть список заказов "на утверждении" на 15.02.20;
+## CP-5 Как "администратор" хочу посмотреть список заказов "на утверждении";
 
 Request:
 ```
@@ -196,7 +197,7 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/goods/timberGoods/barrels/321
+POST /componentsPlant/admin/goods/timberGoods/321
 ```
 ```json
 {
@@ -207,6 +208,12 @@ POST /componentsPlant/admin/goods/timberGoods/barrels/321
 }
 ```
 Response: ```200 OK```
+
+```json
+{
+    "responce" : "Price changed."
+}
+```
 
 ## CP-7 Как "кладовщик" хочу посмотреть список текущих заказов на отгрузку 
 
