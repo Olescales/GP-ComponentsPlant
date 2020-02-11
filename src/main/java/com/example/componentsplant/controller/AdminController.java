@@ -24,7 +24,7 @@ public class AdminController {
         return adminService.changePrice(storeID, request);
     }
 
-    @GetMapping(value = "/orders",produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+    @GetMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
     public List<OrderDTO> watchOrdersOnApprovementGoods () {
         return adminService.watchOrdersOnApprovement();

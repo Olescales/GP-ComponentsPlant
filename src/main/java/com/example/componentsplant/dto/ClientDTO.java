@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ClientDTO {
-    private Long id;
+    private Long clientID;
     private String name;
     private String legalAddress;
     private String accountNumberOfTheTaxpayer;

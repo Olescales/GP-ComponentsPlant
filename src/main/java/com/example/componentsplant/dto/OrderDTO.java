@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,6 +19,6 @@ public class OrderDTO {
     private Long clientID;
     private OrderCondition orderCondition;
     private Long orderID;
-    private HashMap<Goods, Integer> goodsMap;
+    private List<OrderItem> goodsList;
 
 }

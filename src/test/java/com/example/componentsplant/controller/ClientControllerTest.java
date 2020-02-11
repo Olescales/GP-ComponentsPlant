@@ -19,23 +19,31 @@ public class ClientControllerTest extends AbstractControllerTest {
                         "  \"sum\" : 16000,\n" +
                         "  \"currency\" : \"BYR\",\n" +
                         "  \"clientId\" : 1,\n" +
-                        "  \"goodsMap\" : [\n  " +
-                                "{\n" +
+                        "  \"goodsList\" : [\n {  " +
+                             "  \"goods\" : {\n" +
                                 "  \"name\" : \"bottle\",\n" +
                                 "  \"type\" : \"glassGoods\",\n" +
-                                "  \"releaseCost\" : 100\n" +
-                                "  } : 10,\n" +
+                                "  \"releaseCost\" : 100,\n" +
+                                "  \"storeID\" : \"111\"\n" +
+                                "  }, \"quantity\" : 10\n" +
+                                "  },\n" +
                                 "{\n" +
-                                "    \"name\" : \"barrel\",\n" +
-                                "  \"type\" : \"woodenGoods\",\n" +
-                                "  \"releaseCost\" : 1000\n" +
-                                "  } : 5,\n" +
+                            "  \"goods\" : {\n" +
+                                "  \"name\" : \"barrel\",\n" +
+                                "  \"type\" : \"woodGoods\",\n" +
+                                "  \"releaseCost\" : 1000,\n" +
+                                "  \"storeID\" : \"207\"\n" +
+                                "  }, \"quantity\" : 5\n" +
+                                "  },\n" +
                                 "{\n" +
+                            "  \"goods\" : {\n" +
                                 "  \"name\" : \"dispenser\",\n" +
                                 "  \"type\" : \"metalGoods\",\n" +
-                                "  \"releaseCost\" : 2500\n" +
-                                "  } : 2\n" +
-                            "] \n" +
+                                "  \"releaseCost\" : 2500,\n" +
+                                "  \"storeID\" : \"319\"\n" +
+                                "  }, \"quantity\" : 2\n" +
+                                "  }\n" +
+                                "] \n" +
                         "}"))
                 // then
                 .andExpect(status().isCreated())
@@ -76,26 +84,46 @@ public class ClientControllerTest extends AbstractControllerTest {
                         "]"));
     }
 
-    /*@Test
+    @Test
     public void testClientUpdateOrderIsOk() throws Exception {
         // given
         // when
-        mockMvc.perform(post("/clients/1/orders")
+        mockMvc.perform(post("/clients/1/orders/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "  \"goodsMap\" : {\n" +
-                        "  \"345\" : 10,\n" +
-                        "  \"232\" : 5,\n" +
-                        "  \"122\" : 2,\n" +
-                        "  },\n" +
-                        "  \"sum\" : 16000,\n" +
+                        "  \"sum\" : 19000,\n" +
                         "  \"currency\" : \"BYR\",\n" +
-                        "  \"clientId\" : 1\n" +
+                        "  \"clientId\" : 1,\n" +
+                        "  \"goodsList\" : [\n {  " +
+                        "  \"goods\" : {\n" +
+                        "  \"name\" : \"bottle\",\n" +
+                        "  \"type\" : \"glassGoods\",\n" +
+                        "  \"releaseCost\" : 200,\n" +
+                        "  \"storeID\" : \"111\"\n" +
+                        "  }, \"quantity\" : 10\n" +
+                        "  },\n" +
+                        "{\n" +
+                        "  \"goods\" : {\n" +
+                        "  \"name\" : \"barrel\",\n" +
+                        "  \"type\" : \"woodGoods\",\n" +
+                        "  \"releaseCost\" : 1000,\n" +
+                        "  \"storeID\" : \"207\"\n" +
+                        "  }, \"quantity\" : 6\n" +
+                        "  },\n" +
+                        "{\n" +
+                        "  \"goods\" : {\n" +
+                        "  \"name\" : \"dispenser\",\n" +
+                        "  \"type\" : \"metalGoods\",\n" +
+                        "  \"releaseCost\" : 2500,\n" +
+                        "  \"storeID\" : \"319\"\n" +
+                        "  }, \"quantity\" : 2\n" +
+                        "  }\n" +
+                        "] \n" +
                         "}"))
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
                         "  \"orderID\" : 123\n" +
                         "}"));
-    }*/
+    }
 }
