@@ -174,22 +174,22 @@ Response: ```200 OK```
 
 Request:
 ```
-GET /componentsPlant/admin/ordersForApprove
+GET /componentsPlant/admin/orders
 ```
 Response: ```200 OK```
 ```json
 [
         {
-                "id" : 43,
+                "orderID" : 43,
                 "sum" : 1230,
-                "condition" : "onApprovement",
-                "client" : "def"
+                "orderCondition" : "ONAPPROVEMENT",
+                "clientID" : 1
         },
         {
-                "id" : 32,
+                "orderID" : 32,
                 "sum" : 1470,
-                "condition" : "onApprovement",
-                "client" : "abc"
+                "orderCondition" : "ONAPPROVEMENT",
+                "clientID" : 2
         }
 ]
 ```
