@@ -13,7 +13,7 @@ public class AuthControllerTest extends AbstractControllerTest{
     public void testClientSignInIsOk() throws Exception {
         // given
         // when
-        mockMvc.perform(post("/client/sign-up")
+        mockMvc.perform(post("/clients/sign-up")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "  \"name\" : \"helg\",\n" +

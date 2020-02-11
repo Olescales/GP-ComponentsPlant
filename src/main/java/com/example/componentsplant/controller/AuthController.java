@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
-@RequestMapping(value = "/client", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+@RequestMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
 public class AuthController {
 
     private final AuthService authService;
