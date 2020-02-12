@@ -16,8 +16,6 @@ Fields:
 * accountNumberOfTheTaxpayer;
 * country;
 * bankAccount;
-* email;
-* password;
 * discountCoefficient;
 
 Links:
@@ -34,8 +32,7 @@ Fields:
 * wageType(postponement, prepay, barter);
 * clientId;
 * orderCondition(onApprovement, assembling, readyForShipment, shipped);
-* orderID
-* goodsMap;
+* goodsList;
 
 Links:
 * client;
@@ -50,7 +47,7 @@ Fields:
 * description;
 * netCost;
 * releaseCost;
-* storeID;
+* stockNumber;
 
 Links: 
 * order
@@ -59,12 +56,10 @@ Links:
 Работники фабрики включая дирекцию
 
 Fields:
-* name;
-* lastName;
-* sex;
+* fio;
+* gender;
 * age;
 * position;
-* accessLevel;
 * salary;
 * department;
 * workExperience;
