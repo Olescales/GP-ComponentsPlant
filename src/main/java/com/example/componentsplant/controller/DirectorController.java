@@ -1,6 +1,6 @@
 package com.example.componentsplant.controller;
 
-import com.example.componentsplant.dto.OrdersAgregator;
+import com.example.componentsplant.dto.OrdersAggregator;
 import com.example.componentsplant.service.DirectorService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -16,13 +16,13 @@ public class DirectorController {
 
     @GetMapping (value = "/{glassGoods}")
     @ResponseStatus (HttpStatus.OK)
-    public OrdersAgregator watchProfitGlassGoods (@PathVariable ("glassGoods") final String glassGoods) {
+    public OrdersAggregator watchProfitGlassGoods (@PathVariable ("glassGoods") final String glassGoods) {
         return directorService.watchProfitGlassGoods(glassGoods);
     }
 
     @GetMapping (value = "")
     @ResponseStatus (HttpStatus.OK)
-    public OrdersAgregator watchTotalSumOfOrders () {
+    public OrdersAggregator watchTotalSumOfOrders () {
         return directorService.watchTotalSumOfOrders();
     }
 }

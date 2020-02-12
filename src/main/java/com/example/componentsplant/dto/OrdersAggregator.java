@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class OrdersAgregator {
+public class OrdersAggregator {
 
     private Double totalSumOfOrders;
     private Double totalSumOfProfit;

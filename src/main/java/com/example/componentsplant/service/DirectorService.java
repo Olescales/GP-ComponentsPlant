@@ -1,16 +1,16 @@
 package com.example.componentsplant.service;
 
-import com.example.componentsplant.dto.OrdersAgregator;
+import com.example.componentsplant.dto.OrdersAggregator;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DirectorService {
 
-    public OrdersAgregator watchProfitGlassGoods (final String glassGoods) {
-        return OrdersAgregator.builder().totalSumOfProfit(25000d).build();
+    public OrdersAggregator watchProfitGlassGoods (final String glassGoods) {
+        return OrdersAggregator.builder().totalSumOfProfit(25000d).build();
     }
 
-    public OrdersAgregator watchTotalSumOfOrders () {
-        return OrdersAgregator.builder().totalSumOfOrders(123456d).build();
+    public OrdersAggregator watchTotalSumOfOrders () {
+        return OrdersAggregator.builder().totalSumOfOrders(123456d).build();
     }
 }
