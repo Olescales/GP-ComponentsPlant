@@ -16,8 +16,6 @@ Fields:
 * accountNumberOfTheTaxpayer;
 * country;
 * bankAccount;
-* email;
-* password;
 * discountCoefficient;
 
 Links:
@@ -34,8 +32,7 @@ Fields:
 * wageType(postponement, prepay, barter);
 * clientId;
 * orderCondition(onApprovement, assembling, readyForShipment, shipped);
-* orderID
-* goodsMap;
+* goodsList;
 
 Links:
 * client;
@@ -50,7 +47,7 @@ Fields:
 * description;
 * netCost;
 * releaseCost;
-* storeID;
+* stockNumber;
 
 Links: 
 * order
@@ -59,12 +56,10 @@ Links:
 Работники фабрики включая дирекцию
 
 Fields:
-* name;
-* lastName;
-* sex;
+* fio;
+* gender;
 * age;
 * position;
-* accessLevel;
 * salary;
 * department;
 * workExperience;
@@ -226,49 +221,57 @@ Response: ```200 OK```
 ```json
 [
         {
-                "id" : 41,
-                "listOfGoods" : [
+                "orderID" : 41,
+                "goodsList" : [ 
                 {
-                        "storeID" : 1,
-                        "quantity" : 5
+                        "goods" : {
+                        "storeID" : 111,
+                        },
+                        "quantity" : 10
                 },
                 {
-                        "storeID" : 2,
+                        "goods" : {
+                        "storeID" : 207,
+                        },
                         "quantity" : 5
                 }
                 ],
-                "condition" : "assembling",
-                "client" : "qwer"
-        },
-        {
-                "id" : 23,
-                "listOfGoods" : [
+                "orderCondition" : "ASSEMBLING",
+                "clientID" : 41
+         },
+         {
+                "orderID" : 23,
+                "goodsList" : [ 
                 {
-                        "storeID" : 3,
-                        "quantity" : 5
+                        "goods" : {
+                        "storeID" : 117,
+                        },
+                        "quantity" : 11
                 },
                 {
-                        "storeID" : 4,
-                        "quantity" : 5
+                        "goods" : {
+                        "storeID" : 189,
+                        },
+                        "quantity" : 4
                 }
                 ],
-                "condition" : "assembling",
-                "client" : "asdf"
-        }
+                "orderCondition" : "ASSEMBLING",
+                "clientID" : 52
+         }
 ]
 ```
 
-## CP-8 Как "директор" хочу посмотреть сумму всех сделок по предоплате закрытых за 02.2020;
+## CP-8 Как "директор" хочу посмотреть сумму всех сделок по предоплате за февраль;
 
 Request:
 ```
-GET /componentsPlant/director/orders/2020/02/prepaidOrders
+GET /componentsPlant/director/orders/prepaidOrders
 ```
 Response: ```200 OK```
 
 ```json
 {
-    "sum" : 123456
+    "totalSumOfOrders" : 123456
 }
 ```
 
@@ -276,12 +279,12 @@ Response: ```200 OK```
 
 Request:
 ```
-GET /componentsPlant/director/orders/2020/02/glassGoods/profit
+GET /componentsPlant/director/orders/prepaidOrders/{glassGoods}
 ```
 Response: ```200 OK```
 
 ```json
 {
-    "sum" : 25000
+    "totalSumOfProfit" : 25000
 }
 ```
