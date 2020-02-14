@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class EmployeeSignUpRequest {
 
     private String companyName;
-    private String email;
+    private String login;
     private String password;
     private String fio;
     private Gender gender;

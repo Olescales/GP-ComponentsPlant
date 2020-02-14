@@ -26,8 +26,8 @@ public class AuthService {
 
     @Transactional
     public void signUp (final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
-        if (authInfoRepository.findByLogin(request.getEmail()).isPresent()) {
-            throw new SuchClientAlreadyExistsException("User with email=" + request.getEmail() + " already exists");
+        if (authInfoRepository.findByLogin(request.getLogin()).isPresent()) {
+            throw new SuchClientAlreadyExistsException("User with email=" + request.getLogin() + " already exists");
         }
         saveUser(request);
     }
@@ -40,7 +40,7 @@ public class AuthService {
 
     private void saveAuthInfo(final EmployeeSignUpRequest request, final UserEntity savedUser) {
         final AuthInfoEntity authInfoEntity = new AuthInfoEntity();
-        authInfoEntity.setLogin(request.getEmail());
+        authInfoEntity.setLogin(request.getLogin());
         authInfoEntity.setPassword(passwordEncoder.encode(request.getPassword()));
         authInfoEntity.setUserEntity(savedUser);
         authInfoRepository.save(authInfoEntity);

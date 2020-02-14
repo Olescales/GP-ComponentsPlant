@@ -50,7 +50,7 @@ public abstract class AbstractControllerTest {
         final String response = mockMvc.perform(post("/clients/sign-in")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "  \"email\" : \"empl@goodCompany.com\",\n" +
+                        "  \"login\" : \"empl@goodCompany.com\",\n" +
                         "  \"password\" : \"qwerty\"\n" +
                         "}"))
                 // then
@@ -63,10 +63,10 @@ public abstract class AbstractControllerTest {
     protected AuthInfoEntity createAuthInfo() {
         final UserEntity user = new UserEntity();
         user.setUserRole(UserRole.CLIENT);
-        user.setEmail("empl@goodCompany.com");
+        user.setLogin("empl@goodCompany.com");
 
         final AuthInfoEntity authInfo = new AuthInfoEntity();
-        authInfo.setLogin(user.getEmail());
+        authInfo.setLogin(user.getLogin());
         authInfo.setPassword(passwordEncoder.encode("qwerty"));
         authInfo.setUserEntity(user);
         return authInfo;
