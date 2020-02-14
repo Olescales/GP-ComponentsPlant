@@ -2,6 +2,8 @@ package com.example.componentsplant.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ClientDTO {
     private Long clientID;
@@ -13,5 +15,5 @@ public class ClientDTO {
     private String email;
     private String password;
     private double discountCoefficient;
-
+    private List<EmployeeDTO> employees;
 }

@@ -2,16 +2,21 @@ package com.example.componentsplant.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Optional;
+
+import static org.hamcrest.Matchers.hasLength;
+import static org.mockito.BDDMockito.willReturn;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class AuthControllerTest extends AbstractControllerTest{
 
-    @Test
-    public void testClientSignInIsOk() throws Exception {
+    /*@Test
+    public void testClientEmployeeSignUpIsOk() throws Exception {
         // given
+
         // when
         mockMvc.perform(post("/clients/sign-up")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -29,5 +34,44 @@ public class AuthControllerTest extends AbstractControllerTest{
                 .andExpect(content().json("{\n" +
                         "  \"id\" : 1\n" +
                         "}"));
+    }*/
+
+    @Test
+    public void testClientsEmployeeSignUpIsOk() throws Exception {
+        // given
+        willReturn(Optional.empty(), Optional.of(createAuthInfo())).given(authInfoRepository)
+                .findByLogin("empl@goodCompany.com");
+        // when
+        mockMvc.perform(post("/clients/sign-up")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "  \"companyName\" : \"goodCompany\",\n" +
+                        "  \"fio\" : \"Ivanov Ivan Ivanovich\",\n" +
+                        "  \"email\" : \"empl@goodCompany.com\",\n" +
+                        "  \"password\" : \"qwerty\",\n" +
+                        "  \"birthDate\" : \"15.05.1994\"\n" +
+                        "}"))
+                // then
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("token", hasLength(144)));
     }
+
+    /*@Test
+    public void testClientsEmployeeSignInIsOk() throws Exception {
+        // given
+
+        // when
+        mockMvc.perform(post("/clients/sign-up")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "  \"companyName\" : \"goodCompany\",\n" +
+                        "  \"fio\" : \"Ivanov Ivan Ivanovich\",\n" +
+                        "  \"email\" : \"empl@goodCompany.com\",\n" +
+                        "  \"password\" : \"qwerty\",\n" +
+                        "  \"birthDate\" : \"15.05.1994\"\n" +
+                        "}"))
+                // then
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("token", hasLength(144)));
+    }*/
 }

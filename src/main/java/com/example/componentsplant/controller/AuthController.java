@@ -1,24 +1,46 @@
 package com.example.componentsplant.controller;
 
-import com.example.componentsplant.dto.AuthClientResponse;
-import com.example.componentsplant.dto.ClientDTO;
+import com.example.componentsplant.dto.EmployeeSignInRequest;
+import com.example.componentsplant.dto.EmployeeSignInResponse;
+import com.example.componentsplant.dto.EmployeeSignUpRequest;
+import com.example.componentsplant.exception.SuchClientAlreadyExistsException;
+import com.example.componentsplant.security.JwtUtil;
 import com.example.componentsplant.service.AuthService;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
-@Data
 @RestController
-@RequestMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+@AllArgsConstructor
 public class AuthController {
+
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
 
     private final AuthService authService;
 
-    @PostMapping(value = "/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/clients/sign-up", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public AuthClientResponse register(@RequestBody ClientDTO request) {
-        return authService.signIn(request);
+    public EmployeeSignInResponse signUp (@RequestBody final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
+        authService.signUp(request);
+        return signIn(new EmployeeSignInRequest(request.getEmail(), request.getPassword()));
+    }
+
+    @PostMapping(value = "/clients/sign-in", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public EmployeeSignInResponse signIn(@RequestBody final EmployeeSignInRequest request) {
+        authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
+        return new EmployeeSignInResponse(
+                jwtUtil.generateToken(
+                        new User(request.getEmail(), request.getPassword(),
+                                List.of(new SimpleGrantedAuthority("CLIENT")))));
     }
 }
