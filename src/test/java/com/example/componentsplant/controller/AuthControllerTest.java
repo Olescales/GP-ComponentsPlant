@@ -56,10 +56,10 @@ public class AuthControllerTest extends AbstractControllerTest{
                 .andExpect(jsonPath("token", hasLength(144)));
     }
 
-    /*@Test
-    public void testClientsEmployeeSignInIsOk() throws Exception {
+    @Test
+    public void testClientsEmployeeSignUpWhenUserAlreadyExisted() throws Exception {
         // given
-
+        signInAsClientEmployee();
         // when
         mockMvc.perform(post("/clients/sign-up")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +71,52 @@ public class AuthControllerTest extends AbstractControllerTest{
                         "  \"birthDate\" : \"15.05.1994\"\n" +
                         "}"))
                 // then
-                .andExpect(status().isCreated())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testClientsEmployeeSignInIsOk() throws Exception {
+        // given
+        signInAsClientEmployee();
+        // when
+        mockMvc.perform(post("/clients/sign-in")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "  \"email\" : \"empl@goodCompany.com\",\n" +
+                        "  \"password\" : \"qwerty\"\n" +
+                        "}"))
+                // then
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("token", hasLength(144)));
-    }*/
+    }
+
+    @Test
+    public void testClientsEmployeeSignInWithWrongPassword() throws Exception {
+        // given
+        signInAsClientEmployee();
+        // when
+        mockMvc.perform(post("/clients/sign-in")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "  \"email\" : \"empl@goodCompany.com\",\n" +
+                        "  \"password\" : \"wrongPassword\"\n" +
+                        "}"))
+                // then
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    public void testClientsEmployeeSignInWithWrongEmail() throws Exception {
+        // given
+        signInAsClientEmployee();
+        // when
+        mockMvc.perform(post("/clients/sign-in")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "  \"email\" : \"noSuchempl@goodCompany.com\",\n" +
+                        "  \"password\" : \"wrongPassword\"\n" +
+                        "}"))
+                // then
+                .andExpect(status().isForbidden());
+    }
 }
