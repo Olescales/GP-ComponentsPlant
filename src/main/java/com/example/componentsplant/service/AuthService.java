@@ -22,7 +22,7 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private EmployeeSingUpRequestMapper employeeSingUpRequestMapper;
+    private final EmployeeSingUpRequestMapper employeeSingUpRequestMapper;
 
     @Transactional
     public void signUp (final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
