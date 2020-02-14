@@ -14,7 +14,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -31,17 +34,17 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED)
     public EmployeeSignInResponse signUp (@RequestBody final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
         authService.signUp(request);
-        return signIn(new EmployeeSignInRequest(request.getLogin(), request.getPassword()));
+        return signIn(new EmployeeSignInRequest(request.getEmail(), request.getPassword()));
     }
 
     @PostMapping(value = "/clients/sign-in", consumes = MediaType.APPLICATION_JSON_VALUE)
     public EmployeeSignInResponse signIn(@RequestBody final EmployeeSignInRequest request) {
         authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         return new EmployeeSignInResponse(
                 jwtUtil.generateToken(
-                        new User(request.getLogin(), request.getPassword(),
+                        new User(request.getEmail(), request.getPassword(),
                                 List.of(new SimpleGrantedAuthority(UserRole.CLIENT.name())))));
     }
 }

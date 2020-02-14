@@ -21,7 +21,7 @@ public class UserEntity {
     private String fio;
     private Gender gender;
     private String companyName;
-    private String login;
+    private String email;
     private LocalDate birthDate;
     private String selfDescription;
     private UserRole userRole;

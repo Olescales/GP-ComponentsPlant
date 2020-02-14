@@ -7,9 +7,8 @@ import java.time.LocalDate;
 
 @Data
 public class EmployeeSignUpRequest {
-
     private String companyName;
-    private String login;
+    private String email;
     private String password;
     private String fio;
     private Gender gender;

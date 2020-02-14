@@ -12,7 +12,7 @@ public class ClientDTO {
     private String accountNumberOfTheTaxpayer;
     private String country;
     private String bankAccount;
-    private String login;
+    private String email;
     private String password;
     private double discountCoefficient;
     private List<EmployeeDTO> employees;

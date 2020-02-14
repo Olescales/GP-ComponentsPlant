@@ -50,12 +50,12 @@ public abstract class AbstractControllerTest {
         final String response = mockMvc.perform(post("/clients/sign-in")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "  \"login\" : \"empl@goodCompany.com\",\n" +
+                        "  \"email\" : \"empl@goodCompany.com\",\n" +
                         "  \"password\" : \"qwerty\"\n" +
                         "}"))
                 // then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("token", hasLength(144)))
+                .andExpect(jsonPath("token", hasLength(151)))
                 .andReturn().getResponse().getContentAsString();
         return "Bearer " + objectMapper.readValue(response, EmployeeSignInResponse.class).getToken();
     }
@@ -63,10 +63,10 @@ public abstract class AbstractControllerTest {
     protected AuthInfoEntity createAuthInfo() {
         final UserEntity user = new UserEntity();
         user.setUserRole(UserRole.CLIENT);
-        user.setLogin("empl@goodCompany.com");
+        user.setEmail("empl@goodCompany.com");
 
         final AuthInfoEntity authInfo = new AuthInfoEntity();
-        authInfo.setLogin(user.getLogin());
+        authInfo.setEmail(user.getEmail());
         authInfo.setPassword(passwordEncoder.encode("qwerty"));
         authInfo.setUserEntity(user);
         return authInfo;
