@@ -1,13 +1,14 @@
 package com.example.componentsplant.repository;
 
-import com.example.componentsplant.entity.AuthInfoEntity;
+
+import com.example.componentsplant.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface AuthInfoRepository extends JpaRepository<AuthInfoEntity, Long> {
+public interface OrderRepository extends JpaRepository<OrderEntity,Long> {
 
-    Optional<AuthInfoEntity> findByEmail(String username);
+    Optional<OrderEntity> findAllByClientID(Long id);
 }

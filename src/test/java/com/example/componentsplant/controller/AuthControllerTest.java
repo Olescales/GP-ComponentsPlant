@@ -18,7 +18,7 @@ public class AuthControllerTest extends AbstractControllerTest{
         // given
        // given(authInfoRepository.findByLogin("empl@goodCompany.com")).willReturn(Optional.empty());
         willReturn(Optional.empty(), Optional.of(createAuthInfo())).given(authInfoRepository)
-                .findByLogin("empl@goodCompany.com");
+                .findByEmail("empl@goodCompany.com");
         // when
         mockMvc.perform(post("/clients/sign-up")
                 .contentType(MediaType.APPLICATION_JSON)

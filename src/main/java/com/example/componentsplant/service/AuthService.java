@@ -26,7 +26,7 @@ public class AuthService {
 
     @Transactional
     public void signUp (final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
-        if (authInfoRepository.findByLogin(request.getEmail()).isPresent()) {
+        if (authInfoRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new SuchClientAlreadyExistsException("User with email=" + request.getEmail() + " already exists");
         }
         saveUser(request);
