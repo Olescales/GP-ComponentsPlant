@@ -9,10 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @EnableWebSecurity
-public class GPComponentsPlantApplication {
+public class ComponentsplantApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GPComponentsPlantApplication.class, args);
+        SpringApplication.run(ComponentsplantApplication.class, args);
     }
 
     @Bean
