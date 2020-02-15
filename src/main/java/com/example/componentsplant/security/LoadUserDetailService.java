@@ -26,7 +26,7 @@ public class LoadUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final Optional<AuthInfoEntity> authInfoEntity = authInfoRepository.findByLogin(username);
         if (authInfoEntity.isEmpty()) {
-            throw new UsernameNotFoundException("User with email: " + username + " not found");
+            throw new UsernameNotFoundException("User with login: " + username + " not found");
         } else {
             final SimpleGrantedAuthority authority = new SimpleGrantedAuthority(
                     "ROLE_" + authInfoEntity.get().getUserEntity().getUserRole().name());

@@ -11,7 +11,7 @@ public class AuthInfoEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private String login;
+    private String email;
     private String password;
     @ManyToOne(optional = false)
     @JoinColumn

@@ -22,7 +22,7 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private EmployeeSingUpRequestMapper employeeSingUpRequestMapper;
+    private final EmployeeSingUpRequestMapper employeeSingUpRequestMapper;
 
     @Transactional
     public void signUp (final EmployeeSignUpRequest request) throws SuchClientAlreadyExistsException {
@@ -40,7 +40,7 @@ public class AuthService {
 
     private void saveAuthInfo(final EmployeeSignUpRequest request, final UserEntity savedUser) {
         final AuthInfoEntity authInfoEntity = new AuthInfoEntity();
-        authInfoEntity.setLogin(request.getEmail());
+        authInfoEntity.setEmail(request.getEmail());
         authInfoEntity.setPassword(passwordEncoder.encode(request.getPassword()));
         authInfoEntity.setUserEntity(savedUser);
         authInfoRepository.save(authInfoEntity);

@@ -55,7 +55,7 @@ public abstract class AbstractControllerTest {
                         "}"))
                 // then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("token", hasLength(144)))
+                .andExpect(jsonPath("token", hasLength(151)))
                 .andReturn().getResponse().getContentAsString();
         return "Bearer " + objectMapper.readValue(response, EmployeeSignInResponse.class).getToken();
     }
@@ -66,7 +66,7 @@ public abstract class AbstractControllerTest {
         user.setEmail("empl@goodCompany.com");
 
         final AuthInfoEntity authInfo = new AuthInfoEntity();
-        authInfo.setLogin(user.getEmail());
+        authInfo.setEmail(user.getEmail());
         authInfo.setPassword(passwordEncoder.encode("qwerty"));
         authInfo.setUserEntity(user);
         return authInfo;

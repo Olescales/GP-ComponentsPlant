@@ -5,6 +5,7 @@ import com.example.componentsplant.dto.EmployeeSignInResponse;
 import com.example.componentsplant.dto.EmployeeSignUpRequest;
 import com.example.componentsplant.exception.SuchClientAlreadyExistsException;
 import com.example.componentsplant.security.JwtUtil;
+import com.example.componentsplant.security.UserRole;
 import com.example.componentsplant.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -41,6 +45,6 @@ public class AuthController {
         return new EmployeeSignInResponse(
                 jwtUtil.generateToken(
                         new User(request.getEmail(), request.getPassword(),
-                                List.of(new SimpleGrantedAuthority("CLIENT")))));
+                                List.of(new SimpleGrantedAuthority(UserRole.CLIENT.name())))));
     }
 }

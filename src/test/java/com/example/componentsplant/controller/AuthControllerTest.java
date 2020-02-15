@@ -13,32 +13,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class AuthControllerTest extends AbstractControllerTest{
 
-    /*@Test
-    public void testClientEmployeeSignUpIsOk() throws Exception {
-        // given
-
-        // when
-        mockMvc.perform(post("/clients/sign-up")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "  \"name\" : \"helg\",\n" +
-                        "  \"legalAddress\" : \"bagrationa street\",\n" +
-                        "  \"accountNumberOfTheTaxpayer\" : \"987654321\",\n" +
-                        "  \"country\" : \"belarus\",\n" +
-                        "  \"bankAccount\" : \"12345678901234567890\",\n" +
-                        "  \"email\" : \"me@client.com\",\n" +
-                        "  \"password\" : \"goodpassword\"\n" +
-                        "}"))
-                // then
-                .andExpect(status().isCreated())
-                .andExpect(content().json("{\n" +
-                        "  \"id\" : 1\n" +
-                        "}"));
-    }*/
-
     @Test
     public void testClientsEmployeeSignUpIsOk() throws Exception {
         // given
+       // given(authInfoRepository.findByLogin("empl@goodCompany.com")).willReturn(Optional.empty());
         willReturn(Optional.empty(), Optional.of(createAuthInfo())).given(authInfoRepository)
                 .findByLogin("empl@goodCompany.com");
         // when
@@ -53,8 +31,9 @@ public class AuthControllerTest extends AbstractControllerTest{
                         "}"))
                 // then
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("token", hasLength(144)));
+                .andExpect(jsonPath("token", hasLength(151)));
     }
+
 
     @Test
     public void testClientsEmployeeSignUpWhenUserAlreadyExisted() throws Exception {
@@ -87,7 +66,7 @@ public class AuthControllerTest extends AbstractControllerTest{
                         "}"))
                 // then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("token", hasLength(144)));
+                .andExpect(jsonPath("token", hasLength(151)));
     }
 
     @Test
@@ -106,7 +85,7 @@ public class AuthControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testClientsEmployeeSignInWithWrongEmail() throws Exception {
+    public void testClientsEmployeeSignInWithWrongLogin() throws Exception {
         // given
         signInAsClientEmployee();
         // when
