@@ -20,9 +20,7 @@ public class StaffEntity {
     private Gender gender;
     private Integer age;
     private String position;
-
     private UserRole userRole;
-
     private Double salary;
     private String department;
     private String workExperience;

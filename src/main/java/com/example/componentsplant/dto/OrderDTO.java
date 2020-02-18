@@ -18,6 +18,6 @@ public class OrderDTO {
     private Long clientID;
     private OrderCondition orderCondition;
     private Long orderID;
-    private List<OrderItem> goodsList;
+    private List<OrderItem> goods;
 
 }

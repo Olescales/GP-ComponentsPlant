@@ -2,7 +2,6 @@ package com.example.componentsplant.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,9 +26,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.httpBasic()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/admin/**").hasAuthority(UserRole.ADMIN.name())
-                .antMatchers(HttpMethod.GET, "/director/**").hasAuthority(UserRole.DIRECTOR.name())
-                .antMatchers(HttpMethod.GET, "/storekeeper/**").hasAuthority(UserRole.STOREKEEPER.name())
+                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/director/**").permitAll()
+                .antMatchers("/storekeeper/**").permitAll()
                 .antMatchers("clients/sign-up", "clients/sign-in").permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

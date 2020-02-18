@@ -21,8 +21,8 @@ public class StoreKeeperService {
         goodsList2.add(OrderItem.builder().goods(Goods.builder().storeID(189L).build()).quantity(4).build());
 
         List<OrderDTO> orderDTOList = new ArrayList<>();
-        orderDTOList.add(OrderDTO.builder().orderID(41L).goodsList(goodsList1).orderCondition(OrderCondition.ASSEMBLING).clientID(41L).build());
-        orderDTOList.add(OrderDTO.builder().orderID(23L).goodsList(goodsList2).orderCondition(OrderCondition.ASSEMBLING).clientID(52L).build());
+        orderDTOList.add(OrderDTO.builder().orderID(41L).goods(goodsList1).orderCondition(OrderCondition.ASSEMBLING).clientID(41L).build());
+        orderDTOList.add(OrderDTO.builder().orderID(23L).goods(goodsList2).orderCondition(OrderCondition.ASSEMBLING).clientID(52L).build());
         return orderDTOList;
 
     }

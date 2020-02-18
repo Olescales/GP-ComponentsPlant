@@ -25,5 +25,5 @@ public class OrderEntity {
     private OrderCondition orderCondition;
     @OneToMany
     @JoinColumn
-    private List<OrderItemEntity> goodsList;
+    private List<OrderItemEntity> goods;
 }

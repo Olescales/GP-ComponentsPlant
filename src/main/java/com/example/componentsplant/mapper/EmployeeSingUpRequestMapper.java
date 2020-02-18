@@ -4,7 +4,7 @@ import com.example.componentsplant.dto.EmployeeSignUpRequest;
 import com.example.componentsplant.entity.UserEntity;
 import org.mapstruct.Mapper;
 
-@Mapper (componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface EmployeeSingUpRequestMapper {
 
     UserEntity sourceToDestination (EmployeeSignUpRequest source);
