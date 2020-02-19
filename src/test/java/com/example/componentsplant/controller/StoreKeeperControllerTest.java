@@ -15,14 +15,14 @@ public class StoreKeeperControllerTest extends AbstractControllerTest {
                 .andExpect(content().json("[\n" +
                         "{\n" +
                             "  \"orderID\" : 41,\n" +
-                            "  \"goodsList\" : [ {\n" +
-                            "  \"goods\" : {\n" +
-                                            "  \"storeID\" : 111\n" +
+                            "  \"goods\" : [ {\n" +
+                            "  \"commodity\" : {\n" +
+                                            "  \"stockNumber\" : 111\n" +
                                         "  },\"quantity\" : 10\n" +
                                              "  },\n" +
                             "  {\n" +
-                            "  \"goods\" : {\n" +
-                                        "  \"storeID\" : 207\n" +
+                            "  \"commodity\" : {\n" +
+                                        "  \"stockNumber\" : 207\n" +
                                          "  },\"quantity\" : 5\n" +
                             "  }\n" +
                             "  ],\n" +
@@ -32,14 +32,14 @@ public class StoreKeeperControllerTest extends AbstractControllerTest {
 
                         "{\n" +
                         "  \"orderID\" : 23,\n" +
-                        "  \"goodsList\" : [ {\n" +
-                        "  \"goods\" : {\n" +
-                        "  \"storeID\" : 117\n" +
+                        "  \"goods\" : [ {\n" +
+                        "  \"commodity\" : {\n" +
+                        "  \"stockNumber\" : 117\n" +
                         "  },\"quantity\" : 11\n" +
                         "  },\n" +
                         "  {\n" +
-                        "  \"goods\" : {\n" +
-                        "  \"storeID\" : 189\n" +
+                        "  \"commodity\" : {\n" +
+                        "  \"stockNumber\" : 189\n" +
                         "  },\"quantity\" : 4\n" +
                         "  }\n" +
                         "  ],\n" +

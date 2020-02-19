@@ -24,7 +24,7 @@ public class AdminService {
     }
 
     public Goods createGoods (Goods goods) {
-        return Goods.builder().storeID(321L).build();
+        return Goods.builder().stockNumber(321L).build();
     }
 
 

@@ -16,7 +16,6 @@ public class AuthControllerTest extends AbstractControllerTest{
     @Test
     public void testClientsEmployeeSignUpIsOk() throws Exception {
         // given
-       // given(authInfoRepository.findByLogin("empl@goodCompany.com")).willReturn(Optional.empty());
         willReturn(Optional.empty(), Optional.of(createAuthInfo())).given(authInfoRepository)
                 .findByEmail("empl@goodCompany.com");
         // when

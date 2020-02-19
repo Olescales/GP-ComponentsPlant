@@ -11,5 +11,5 @@ public class Goods {
     private String description;
     private Double netCost;
     private Long releaseCost;
-    private Long storeID;
+    private Long stockNumber;
 }

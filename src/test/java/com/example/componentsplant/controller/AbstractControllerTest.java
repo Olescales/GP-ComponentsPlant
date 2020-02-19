@@ -74,4 +74,5 @@ public abstract class AbstractControllerTest {
         authInfo.setUserEntity(user);
         return authInfo;
     }
+
 }

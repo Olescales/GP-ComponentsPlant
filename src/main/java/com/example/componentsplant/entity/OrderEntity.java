@@ -16,7 +16,7 @@ public class OrderEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private Double sum;
+    private Long sum;
     private String currency;
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDate dateOfTheOrder;

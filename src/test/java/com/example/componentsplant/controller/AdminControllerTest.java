@@ -25,7 +25,7 @@ public class AdminControllerTest extends AbstractControllerTest {
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
-                        "  \"storeID\" : 321\n" +
+                        "  \"stockNumber\" : 321\n" +
                         "}"));
     }
 

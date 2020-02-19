@@ -22,7 +22,6 @@ public class ClientService {
     public OrderDTO makeOrder (final OrderDTO request) {
         final OrderEntity orderEntity = orderDTOMapper.sourceToDestination(request);
         return orderDTOMapper.destinationToSource(orderRepository.save(orderEntity));
-
     }
 
     public Message deleteOrder (final Long orderID) {

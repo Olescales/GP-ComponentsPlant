@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class OrderItem {
 
-    private Goods goods;
+    private Goods commodity;
     private Integer quantity;
 
 }
