@@ -1,9 +1,9 @@
 package com.example.componentsplant.controller;
 
+import com.example.componentsplant.dto.BookingDTO;
 import com.example.componentsplant.dto.Goods;
-import com.example.componentsplant.dto.OrderDTO;
-import com.example.componentsplant.service.AdminService;
 import com.example.componentsplant.dto.Message;
+import com.example.componentsplant.service.AdminService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,7 +26,7 @@ public class AdminController {
 
     @GetMapping(value = "/orders", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> watchOrdersOnApprovementGoods () {
+    public List<BookingDTO> watchOrdersOnApprovementGoods () {
         return adminService.watchOrdersOnApprovement();
     }
 

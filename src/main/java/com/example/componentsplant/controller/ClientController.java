@@ -1,7 +1,7 @@
 package com.example.componentsplant.controller;
 
+import com.example.componentsplant.dto.BookingDTO;
 import com.example.componentsplant.dto.Message;
-import com.example.componentsplant.dto.OrderDTO;
 import com.example.componentsplant.service.ClientService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -17,13 +17,13 @@ public class ClientController {
 
     @PostMapping(value = "/clients/1/orders", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderDTO makeOrder (@RequestBody final OrderDTO request) {
+    public BookingDTO makeOrder (@RequestBody final BookingDTO request) {
         return clientService.makeOrder(request);
     }
 
     @PostMapping(value = "/clients/1/orders/{orderID}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Message changeOrder (@PathVariable("orderID") final Long orderID, @RequestBody final OrderDTO request) {
+    public Message changeOrder (@PathVariable("orderID") final Long orderID, @RequestBody final BookingDTO request) {
         return clientService.changeOrder(orderID, request);
     }
 
@@ -35,7 +35,7 @@ public class ClientController {
 
     @GetMapping(value = "/clients/1", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> watchOrderStory () {
+    public List<BookingDTO> watchOrderStory () {
         return clientService.watchOrder();
     }
 }

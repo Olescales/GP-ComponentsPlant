@@ -31,7 +31,7 @@ Fields:
 * dateOfTheOrder;
 * wageType(postponement, prepay, barter);
 * clientId;
-* orderCondition(onApprovement, assembling, readyForShipment, shipped);
+* bookingCondition(onApprovement, assembling, readyForShipment, shipped);
 * goodsList;
 
 Links:
@@ -133,12 +133,12 @@ Response: ```200 OK```
         {
                 "orderID" : 1,
                 "sum" : 1000,
-                "orderCondition" : "SHIPPED"
+                "bookingCondition" : "SHIPPED"
         },
         {
                 "orderID" : 2,
                 "sum" : 2500,
-                "orderCondition" : "READYFORSHIPMENT"
+                "bookingCondition" : "READYFORSHIPMENT"
         }
 ]
 ```
@@ -177,13 +177,13 @@ Response: ```200 OK```
         {
                 "orderID" : 43,
                 "sum" : 1230,
-                "orderCondition" : "ONAPPROVEMENT",
+                "bookingCondition" : "ONAPPROVEMENT",
                 "clientID" : 1
         },
         {
                 "orderID" : 32,
                 "sum" : 1470,
-                "orderCondition" : "ONAPPROVEMENT",
+                "bookingCondition" : "ONAPPROVEMENT",
                 "clientID" : 2
         }
 ]
@@ -225,18 +225,18 @@ Response: ```200 OK```
                 "goodsList" : [ 
                 {
                         "goods" : {
-                        "storeID" : 111,
+                        "storeID" : 111
                         },
                         "quantity" : 10
                 },
                 {
                         "goods" : {
-                        "storeID" : 207,
+                        "storeID" : 207
                         },
                         "quantity" : 5
                 }
                 ],
-                "orderCondition" : "ASSEMBLING",
+                "bookingCondition" : "ASSEMBLING",
                 "clientID" : 41
          },
          {
@@ -244,18 +244,18 @@ Response: ```200 OK```
                 "goodsList" : [ 
                 {
                         "goods" : {
-                        "storeID" : 117,
+                        "storeID" : 117
                         },
                         "quantity" : 11
                 },
                 {
                         "goods" : {
-                        "storeID" : 189,
+                        "storeID" : 189
                         },
                         "quantity" : 4
                 }
                 ],
-                "orderCondition" : "ASSEMBLING",
+                "bookingCondition" : "ASSEMBLING",
                 "clientID" : 52
          }
 ]

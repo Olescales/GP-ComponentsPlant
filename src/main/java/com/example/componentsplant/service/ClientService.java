@@ -1,11 +1,11 @@
 package com.example.componentsplant.service;
 
+import com.example.componentsplant.dto.BookingCondition;
+import com.example.componentsplant.dto.BookingDTO;
 import com.example.componentsplant.dto.Message;
-import com.example.componentsplant.dto.OrderCondition;
-import com.example.componentsplant.dto.OrderDTO;
-import com.example.componentsplant.entity.OrderEntity;
-import com.example.componentsplant.mapper.OrderDTOMapper;
-import com.example.componentsplant.repository.OrderRepository;
+import com.example.componentsplant.entity.BookingEntity;
+import com.example.componentsplant.mapper.BookingDTOMapper;
+import com.example.componentsplant.repository.BookingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,26 +16,26 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientService {
 
-    private final OrderDTOMapper orderDTOMapper;
-    private final OrderRepository orderRepository;
+    private final BookingDTOMapper bookingDTOMapper;
+    private final BookingRepository bookingRepository;
 
-    public OrderDTO makeOrder (final OrderDTO request) {
-        final OrderEntity orderEntity = orderDTOMapper.sourceToDestination(request);
-        return orderDTOMapper.destinationToSource(orderRepository.save(orderEntity));
+    public BookingDTO makeOrder (final BookingDTO request) {
+        final BookingEntity bookingEntity = bookingDTOMapper.sourceToDestination(request);
+        return bookingDTOMapper.destinationToSource(bookingRepository.save(bookingEntity));
     }
 
-    public Message deleteOrder (final Long orderID) {
+    public Message deleteOrder (final Long bookingID) {
         return Message.builder().response("Заказ удалён!").build();
     }
 
-    public Message changeOrder (final Long orderID, final  OrderDTO orderDTO) {
+    public Message changeOrder (final Long bookingID, final  BookingDTO bookingDTO) {
         return Message.builder().response("Заказ обновлён").build();
     }
 
-    public List<OrderDTO> watchOrder () {
-        final List<OrderDTO> orderDTOList = new ArrayList<>();
-        orderDTOList.add(OrderDTO.builder().orderID(1L).sum(1000L).orderCondition(OrderCondition.SHIPPED).build());
-        orderDTOList.add(OrderDTO.builder().orderID(2L).sum(2500L).orderCondition(OrderCondition.READYFORSHIPMENT).build());
-        return orderDTOList;
+    public List<BookingDTO> watchOrder () {
+        final List<BookingDTO> bookingDTOList = new ArrayList<>();
+        bookingDTOList.add(BookingDTO.builder().bookingID(1L).sum(1000L).bookingCondition(BookingCondition.SHIPPED).build());
+        bookingDTOList.add(BookingDTO.builder().bookingID(2L).sum(2500L).bookingCondition(BookingCondition.READYFORSHIPMENT).build());
+        return bookingDTOList;
     }
 }

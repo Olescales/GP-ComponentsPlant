@@ -1,9 +1,6 @@
 package com.example.componentsplant.service;
 
-import com.example.componentsplant.dto.Goods;
-import com.example.componentsplant.dto.Message;
-import com.example.componentsplant.dto.OrderCondition;
-import com.example.componentsplant.dto.OrderDTO;
+import com.example.componentsplant.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,10 +13,10 @@ public class AdminService {
         return Message.builder().response("Price changed.").build();
     }
 
-    public List<OrderDTO> watchOrdersOnApprovement () {
-        List<OrderDTO> orderDTOList = new ArrayList<>();
-        orderDTOList.add(OrderDTO.builder().orderID(43L).sum(1230L).orderCondition(OrderCondition.ONAPPROVEMENT).clientID(1L).build());
-        orderDTOList.add(OrderDTO.builder().orderID(32L).sum(1470L).orderCondition(OrderCondition.ONAPPROVEMENT).clientID(2L).build());
+    public List<BookingDTO> watchOrdersOnApprovement () {
+        List<BookingDTO> orderDTOList = new ArrayList<>();
+        orderDTOList.add(BookingDTO.builder().bookingID(43L).sum(1230L).bookingCondition(BookingCondition.ONAPPROVEMENT).clientID(1L).build());
+        orderDTOList.add(BookingDTO.builder().bookingID(32L).sum(1470L).bookingCondition(BookingCondition.ONAPPROVEMENT).clientID(2L).build());
         return orderDTOList;
     }
 

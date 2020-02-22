@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Entity
+@Entity (name = "auth_info")
 public class AuthInfoEntity {
 
     @Id
@@ -14,6 +14,6 @@ public class AuthInfoEntity {
     private String email;
     private String password;
     @ManyToOne(optional = false)
-    @JoinColumn
+    @JoinColumn (nullable = false)
     private UserEntity userEntity;
 }

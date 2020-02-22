@@ -38,15 +38,15 @@ public class AdminControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "{\n" +
-                        "  \"orderID\" : 43,\n" +
+                        "  \"bookingID\" : 43,\n" +
                         "  \"sum\" : 1230,\n" +
-                        "  \"orderCondition\" : \"ONAPPROVEMENT\"," +
+                        "  \"bookingCondition\" : \"ONAPPROVEMENT\"," +
                         "  \"clientID\" : 1" +
                         "},\n" +
                         "{\n" +
-                        "  \"orderID\" : 32,\n" +
+                        "  \"bookingID\" : 32,\n" +
                         "  \"sum\" : 1470,\n" +
-                        "  \"orderCondition\" : \"ONAPPROVEMENT\"," +
+                        "  \"bookingCondition\" : \"ONAPPROVEMENT\"," +
                         "  \"clientID\" : 2" +
                         "}\n" +
                         "]"));

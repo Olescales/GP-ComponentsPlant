@@ -11,8 +11,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
-@Entity
-
+@Entity (name = "user")
 public class UserEntity {
 
     @Id

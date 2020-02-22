@@ -1,9 +1,9 @@
 package com.example.componentsplant.controller;
 
+import com.example.componentsplant.dto.BookingDTO;
 import com.example.componentsplant.dto.Goods;
-import com.example.componentsplant.dto.OrderDTO;
 import com.example.componentsplant.dto.OrderItem;
-import com.example.componentsplant.mapper.OrderDTOMapper;
+import com.example.componentsplant.mapper.BookingDTOMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ClientControllerTest extends AbstractControllerTest {
 
     @Autowired
-    protected OrderDTOMapper orderDTOMapper;
+    protected BookingDTOMapper bookingDTOMapper;
 
     @Test
     public void testClientMakeOrderIsOk() throws Exception {
         // given
-        BDDMockito.willReturn(orderDTOMapper.sourceToDestination(createOrderDTOInfo()))
-                .given(orderRepository)
-                .save(orderDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));
+        BDDMockito.willReturn(bookingDTOMapper.sourceToDestination(createOrderDTOInfo()))
+                .given(bookingRepository)
+                .save(bookingDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));
         // when
         mockMvc.perform(post("/clients/1/orders")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -63,7 +63,7 @@ public class ClientControllerTest extends AbstractControllerTest {
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
-                        "  \"orderID\" : 123\n" +
+                        "  \"bookingID\" : 123\n" +
                         "}"));
     }
 
@@ -87,14 +87,14 @@ public class ClientControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "{\n" +
-                        "  \"orderID\" : 1,\n" +
+                        "  \"bookingID\" : 1,\n" +
                         "  \"sum\" : 1000,\n" +
-                        "  \"orderCondition\" : \"SHIPPED\"\n" +
+                        "  \"bookingCondition\" : \"SHIPPED\"\n" +
                         "},\n" +
                         "{\n" +
-                        "  \"orderID\" : 2,\n" +
+                        "  \"bookingID\" : 2,\n" +
                         "  \"sum\" : 2500,\n" +
-                        "  \"orderCondition\" : \"READYFORSHIPMENT\"\n" +
+                        "  \"bookingCondition\" : \"READYFORSHIPMENT\"\n" +
                         "}\n" +
                         "]"));
     }
@@ -102,9 +102,9 @@ public class ClientControllerTest extends AbstractControllerTest {
     @Test
     public void testClientUpdateOrderIsOk() throws Exception {
         // given
-        BDDMockito.willReturn(orderDTOMapper.sourceToDestination(createOrderDTOInfo()))
-                .given(orderRepository)
-                .save(orderDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));
+        BDDMockito.willReturn(bookingDTOMapper.sourceToDestination(createOrderDTOInfo()))
+                .given(bookingRepository)
+                .save(bookingDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));
         // when
         mockMvc.perform(post("/clients/1/orders/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -141,16 +141,16 @@ public class ClientControllerTest extends AbstractControllerTest {
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
-                        "  \"orderID\" : 123\n" +
+                        "  \"bookingID\" : 123\n" +
                         "}"));
     }
 
 
-    protected OrderDTO createOrderDTOInfo() {
-        return OrderDTO.builder().orderID(123L).build();
+    protected BookingDTO createOrderDTOInfo() {
+        return BookingDTO.builder().bookingID(123L).build();
     }
 
-    protected OrderDTO createAnotherOrderDTOInfo() {
+    protected BookingDTO createAnotherOrderDTOInfo() {
         final List<OrderItem> orderItemList = new ArrayList<>();
         orderItemList.add(OrderItem.builder().commodity(Goods.builder()
                 .name("bottle")
@@ -170,6 +170,6 @@ public class ClientControllerTest extends AbstractControllerTest {
                 .releaseCost(2500L)
                 .stockNumber(319L)
                 .build()).quantity(2).build());
-        return OrderDTO.builder().sum(16000L).currency("BYR").clientID(1L).goods(orderItemList).build();
+        return BookingDTO.builder().sum(16000L).currency("BYR").clientID(1L).goods(orderItemList).build();
     }
 }

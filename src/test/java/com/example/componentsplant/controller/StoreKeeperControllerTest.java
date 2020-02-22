@@ -14,7 +14,7 @@ public class StoreKeeperControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "{\n" +
-                            "  \"orderID\" : 41,\n" +
+                            "  \"bookingID\" : 41,\n" +
                             "  \"goods\" : [ {\n" +
                             "  \"commodity\" : {\n" +
                                             "  \"stockNumber\" : 111\n" +
@@ -26,12 +26,12 @@ public class StoreKeeperControllerTest extends AbstractControllerTest {
                                          "  },\"quantity\" : 5\n" +
                             "  }\n" +
                             "  ],\n" +
-                            "  \"orderCondition\" : \"ASSEMBLING\",\n" +
+                            "  \"bookingCondition\" : \"ASSEMBLING\",\n" +
                             "  \"clientID\" : 41\n" +
                         "  },\n" +
 
                         "{\n" +
-                        "  \"orderID\" : 23,\n" +
+                        "  \"bookingID\" : 23,\n" +
                         "  \"goods\" : [ {\n" +
                         "  \"commodity\" : {\n" +
                         "  \"stockNumber\" : 117\n" +
@@ -43,7 +43,7 @@ public class StoreKeeperControllerTest extends AbstractControllerTest {
                         "  },\"quantity\" : 4\n" +
                         "  }\n" +
                         "  ],\n" +
-                        "  \"orderCondition\" : \"ASSEMBLING\",\n" +
+                        "  \"bookingCondition\" : \"ASSEMBLING\",\n" +
                         "  \"clientID\" : 52\n" +
                         "  }\n" +
                         "]"));

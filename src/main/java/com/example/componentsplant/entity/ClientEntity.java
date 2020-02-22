@@ -2,22 +2,26 @@ package com.example.componentsplant.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
-@Entity
+@Entity (name = "client")
 public class ClientEntity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name = "client_id")
     private Long id;
+
     private String name;
     private String legalAddress;
     private String accountNumberOfTheTaxpayer;
     private String country;
     private String bankAccount;
     private double discountCoefficient;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn (name = "booking_id")
+    private List<BookingEntity> bookings;
 }

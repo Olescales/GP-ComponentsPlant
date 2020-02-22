@@ -9,15 +9,15 @@ import java.util.List;
 
 @Data
 @Builder
-public class OrderDTO {
+public class BookingDTO {
     private Long sum;
     private String currency;
     @JsonFormat (pattern = "dd.MM.yyyy")
     private LocalDate dateOfTheOrder;
     private WageType wageType;
     private Long clientID;
-    private OrderCondition orderCondition;
-    private Long orderID;
+    private BookingCondition bookingCondition;
+    private Long bookingID;
     private List<OrderItem> goods;
 
 }
