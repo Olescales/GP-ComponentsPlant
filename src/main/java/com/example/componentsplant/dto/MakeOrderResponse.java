@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class MakeOrderResponse {
-    private Long id;
+    private Goods id;
 }

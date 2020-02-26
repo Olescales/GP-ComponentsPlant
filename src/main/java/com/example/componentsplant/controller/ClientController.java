@@ -1,7 +1,9 @@
 package com.example.componentsplant.controller;
 
 import com.example.componentsplant.dto.BookingDTO;
+import com.example.componentsplant.dto.BookingNumberDTO;
 import com.example.componentsplant.dto.Message;
+import com.example.componentsplant.exception.NotEnoughGoodsInStock;
 import com.example.componentsplant.service.ClientService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -9,16 +11,17 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Data
 @RestController
 public class ClientController {
 
     private final ClientService clientService;
 
-    @PostMapping(value = "/clients/1/orders", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/clients/{clientID}/orders", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public BookingDTO makeOrder (@RequestBody final BookingDTO request) {
-        return clientService.makeOrder(request);
+    public BookingNumberDTO makeOrder (@PathVariable final Long clientID, @RequestBody final BookingDTO request) throws NotEnoughGoodsInStock {
+        return clientService.makeOrder(clientID, request);
     }
 
     @PostMapping(value = "/clients/1/orders/{orderID}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,10 +36,10 @@ public class ClientController {
         return clientService.deleteOrder(orderID);
     }
 
-    @GetMapping(value = "/clients/1", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/clients/{clientID}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<BookingDTO> watchOrderStory () {
-        return clientService.watchOrder();
+    public List<BookingDTO> watchOrderStory(@PathVariable final Long clientID) {
+        return clientService.watchOrder(clientID);
     }
 }
 

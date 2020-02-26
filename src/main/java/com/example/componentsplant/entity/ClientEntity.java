@@ -11,17 +11,15 @@ public class ClientEntity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name = "client_id")
     private Long id;
 
     private String name;
-    private String legalAddress;
-    private String accountNumberOfTheTaxpayer;
+    private String legaladdress;
+    private String payernumber;
     private String country;
-    private String bankAccount;
-    private double discountCoefficient;
+    private String bankaccount;
+    private double discount;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn (name = "booking_id")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<BookingEntity> bookings;
 }

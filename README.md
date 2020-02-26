@@ -36,7 +36,7 @@ Fields:
 
 Links:
 * client;
-* goods
+* aGoods
 
 ## Goods (Товар):
 Единица продукции производимая фабрикой
@@ -147,7 +147,7 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/goods/timberGoods
+POST /componentsPlant/admin/aGoods/timberGoods
 ```
 ```json
 {
@@ -192,7 +192,7 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/goods/timberGoods/321
+POST /componentsPlant/admin/aGoods/timberGoods/321
 ```
 ```json
 {
@@ -214,7 +214,7 @@ Response: ```200 OK```
 
 Request:
 ```
-GET /componentsPlant/storeKeeper/ordersForAssemble
+GET /componentsPlant/storeKeeper/orders
 ```
 Response: ```200 OK```
 
@@ -224,13 +224,13 @@ Response: ```200 OK```
                 "orderID" : 41,
                 "goodsList" : [ 
                 {
-                        "goods" : {
+                        "Goods" : {
                         "storeID" : 111
                         },
                         "quantity" : 10
                 },
                 {
-                        "goods" : {
+                        "Goods" : {
                         "storeID" : 207
                         },
                         "quantity" : 5
@@ -243,13 +243,13 @@ Response: ```200 OK```
                 "orderID" : 23,
                 "goodsList" : [ 
                 {
-                        "goods" : {
+                        "Goods" : {
                         "storeID" : 117
                         },
                         "quantity" : 11
                 },
                 {
-                        "goods" : {
+                        "Goods" : {
                         "storeID" : 189
                         },
                         "quantity" : 4
@@ -287,4 +287,67 @@ Response: ```200 OK```
 {
     "totalSumOfProfit" : 25000
 }
+```
+
+## CP-10 Как "кладовщик" хочу посмотреть список всех собранных заказов 
+
+Request:
+```
+GET /componentsPlant/storeKeeper/orders
+```
+Response: ```200 OK```
+
+```json
+[
+        {
+                "orderID" : 1,
+                "goodsList" : [ 
+                {
+                        "Goods" : {
+                        "stockNumber" : 10000
+                        },
+                        "quantity" : 3
+                },
+                {
+                        "Goods" : {
+                         "stockNumber": 30000
+                        },
+                        "quantity" : 5
+                }
+                ],
+                "bookingCondition" : "READYFORSHIPMENT",
+                "clientID" : 1
+         },
+         {
+                "orderID" : 2,
+                "goodsList" : [ 
+                {
+                        "Goods" : {
+                        "stockNumber" : 10001
+                        },
+                        "quantity" : 7
+                }
+                ],
+                "bookingCondition" : "READYFORSHIPMENT",
+                "clientID" : 1
+         }
+]
+```
+
+## CP-11 Как "директор" хочу посмотреть список всех клиентов фабрики;
+
+Request:
+```
+GET /componentsPlant/director/clients
+```
+Response: ```200 OK```
+
+```json
+
+{
+     "clientID" : 1,
+     "clientID" : 2,
+     "clientID" : 3
+}
+
 ```

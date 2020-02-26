@@ -10,14 +10,13 @@ import java.util.List;
 @Data
 @Builder
 public class BookingDTO {
-    private Long sum;
+    private Double sum;
     private String currency;
-    @JsonFormat (pattern = "dd.MM.yyyy")
-    private LocalDate dateOfTheOrder;
-    private WageType wageType;
+    @JsonFormat (pattern = "yyyy-MM-dd")
+    private LocalDate orderdate;
+    private String wage;
     private Long clientID;
-    private BookingCondition bookingCondition;
-    private Long bookingID;
-    private List<OrderItem> goods;
+    private String condition;
+    private List<BookingItemDTO> goods;
 
 }

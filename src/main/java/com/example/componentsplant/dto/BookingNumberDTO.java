@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AuthClientResponse {
-    private Goods id;
+public class BookingNumberDTO {
+    private Long bookingID;
 }

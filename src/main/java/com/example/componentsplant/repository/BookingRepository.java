@@ -5,10 +5,12 @@ import com.example.componentsplant.entity.BookingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
 @Repository
 public interface BookingRepository extends JpaRepository<BookingEntity,Long> {
 
-    Optional<BookingEntity> findAllByClientID(Long id);
+    List<BookingEntity> findBookingEntitiesByClient_Id (Long id);
+
+    BookingEntity findBookingEntityById (Long id);
 }

@@ -10,12 +10,14 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface BookingDTOMapper {
     @Mappings({
-            @Mapping(target = "id", source = "bookingID")
+            @Mapping(target = "client.id", source = "source.clientID"),
+            @Mapping(target = "bookingItemEntities", source = "source.goods")
     })
     BookingEntity sourceToDestination(BookingDTO source);
 
     @Mappings({
-            @Mapping(target = "bookingID", source = "id")
+            @Mapping(target = "clientID", source = "destination.client.id"),
+            @Mapping(target = "goods", source = "destination.bookingItemEntities")
     })
     BookingDTO destinationToSource(BookingEntity destination);
 }

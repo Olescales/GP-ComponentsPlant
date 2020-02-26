@@ -1,7 +1,5 @@
 package com.example.componentsplant.entity;
 
-import com.example.componentsplant.dto.BookingCondition;
-import com.example.componentsplant.dto.WageType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -15,22 +13,20 @@ import java.util.List;
 public class BookingEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "booking_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long sum;
+    private Double sum;
     private String currency;
-    @JsonFormat(pattern = "dd.MM.yyyy")
-    private LocalDate dateOfTheOrder;
-    private WageType wageType;
-    private BookingCondition bookingCondition;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate orderdate;
+    private String wage;
+    private String condition;
 
-    @OneToMany (cascade = CascadeType.ALL)
-    @JoinColumn (name = "booking_item_id")
+    @OneToMany (mappedBy = "bookingEntity", cascade = CascadeType.ALL)
     private List<BookingItemEntity> bookingItemEntities;
 
-    @ManyToOne ()
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn (name = "client_id", nullable = false)
     private ClientEntity client;
 

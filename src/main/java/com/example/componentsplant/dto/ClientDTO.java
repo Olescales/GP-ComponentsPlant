@@ -6,14 +6,14 @@ import java.util.List;
 
 @Data
 public class ClientDTO {
-    private Long clientID;
+    private Goods clientID;
     private String name;
-    private String legalAddress;
-    private String accountNumberOfTheTaxpayer;
+    private String legaladdress;
+    private String payernumber;
     private String country;
-    private String bankAccount;
+    private String bankaccount;
     private String email;
     private String password;
-    private double discountCoefficient;
+    private double discount;
     private List<EmployeeDTO> employees;
 }

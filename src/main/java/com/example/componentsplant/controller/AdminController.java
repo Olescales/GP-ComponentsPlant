@@ -20,7 +20,7 @@ public class AdminController {
 
     @PostMapping(value = "/goods/timberGoods/{storeID}")
     @ResponseStatus(HttpStatus.OK)
-    public Message changePrice (@PathVariable ("storeID") final Long storeID, @RequestBody Goods request) {
+    public Message changePrice (@PathVariable ("storeID") final java.lang.Long storeID, @RequestBody Goods request) {
         return adminService.changePrice(storeID, request);
     }
 

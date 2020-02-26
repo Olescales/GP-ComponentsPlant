@@ -1,0 +1,544 @@
+ databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: add client table
+      author: olegkatok
+      changes:
+        - createTable:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(512)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: legaladdress
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payernumber
+                  type: varchar(9)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: varchar(50)
+              - column:
+                  name: bankaccount
+                  type: varchar(28)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: discount
+                  type: DECIMAL(4,2)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert client into the table
+      author: olegkatok
+      changes:
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: "valiantin"
+              - column:
+                  name: legaladdress
+                  value: "Nemiga str"
+              - column:
+                  name: payernumber
+                  value: "123456789"
+              - column:
+                  name: country
+                  value: "Belarus"
+              - column:
+                  name: bankaccount
+                  value: "0000111122223333444455556666"
+              - column:
+                  name: discount
+                  value: 1.00
+
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: "serioga"
+              - column:
+                  name: legaladdress
+                  value: "Pushkin str"
+              - column:
+                  name: payernumber
+                  value: "234567890"
+              - column:
+                  name: country
+                  value: "Belarus"
+              - column:
+                  name: bankaccount
+                  value: "1111222233334444555566667777"
+              - column:
+                  name: discount
+                  value: 0.95
+
+  - changeSet:
+      id: add goods table
+      author: olegkatok
+      changes:
+        - createTable:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(512)
+              - column:
+                  name: netcost
+                  type: DECIMAL(8,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: releasecost
+                  type: DECIMAL(8,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: stocknumber
+                  type: INT
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert goods into the table
+      author: olegkatok
+      changes:
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: "Bottle"
+              - column:
+                  name: type
+                  value: "glassGoods"
+              - column:
+                  name: description
+                  value: "For liquids"
+              - column:
+                  name: netcost
+                  value: 30.02
+              - column:
+                  name: releasecost
+                  value: 48.02
+              - column:
+                  name: stocknumber
+                  value: 10000
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: "Glass"
+              - column:
+                  name: type
+                  value: "glassGoods"
+              - column:
+                  name: description
+                  value: "For liquids"
+              - column:
+                  name: netcost
+                  value: 50.02
+              - column:
+                  name: releasecost
+                  value: 75.89
+              - column:
+                  name: stocknumber
+                  value: 10001
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: "Barrel"
+              - column:
+                  name: type
+                  value: "woodGoods"
+              - column:
+                  name: description
+                  value: "For spirits"
+              - column:
+                  name: netcost
+                  value: 1005.78
+              - column:
+                  name: releasecost
+                  value: 1300.58
+              - column:
+                  name: stocknumber
+                  value: 20000
+        - insert:
+            tableName: goods
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: "Dispencer"
+              - column:
+                  name: type
+                  value: "metalGoods"
+              - column:
+                  name: description
+                  value: "For pouring beer"
+              - column:
+                  name: netcost
+                  value: 2478.56
+              - column:
+                  name: releasecost
+                  value: 3495.36
+              - column:
+                  name: stocknumber
+                  value: 30000
+
+  - changeSet:
+      id: add booking table
+      author: olegkatok
+      changes:
+        - createTable:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: sum
+                  type: DECIMAL(12,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: orderdate
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: wage
+                  type: varchar(30)
+              - column:
+                  name: condition
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_client_id
+                    references: client(id)
+
+  - changeSet:
+      id: insert booking into the table
+      author: olegkatok
+      changes:
+        - insert:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: sum
+                  value: 379.45   # 5 glass
+              - column:
+                  name: currency
+                  value: "BYN"
+              - column:
+                  name: orderdate
+                  value: '2020-02-22'
+              - column:
+                  name: wage
+                  value: "PREPAID"
+              - column:
+                  name: condition
+                  value: "SHIPPED"
+              - column:
+                  name: client_id
+                  value: 1
+        - insert:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: sum
+                  value: 13005.80   # 10 barrel
+              - column:
+                  name: currency
+                  value: "BYN"
+              - column:
+                  name: orderdate
+                  value: '2020-02-22'
+              - column:
+                  name: wage
+                  value: "POSTPONEMENT"
+              - column:
+                  name: condition
+                  value: "SHIPPED"
+              - column:
+                  name: client_id
+                  value: 2
+        - insert:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: sum
+                  value: 7230.82 # 2 Dispenser + 5 Bottle
+              - column:
+                  name: currency
+                  value: "BYN"
+              - column:
+                  name: orderdate
+                  value: '2020-02-23'
+              - column:
+                  name: wage
+                  value: "PREPAID"
+              - column:
+                  name: condition
+                  value: "READYFORSHIPMENT"
+              - column:
+                  name: client_id
+                  value: 2
+
+  - changeSet:
+      id: add bookingItem table
+      author: olegkatok
+      changes:
+        - createTable:
+            tableName: booking_item
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: goods_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_goods_id
+                    references: goods(id)
+              - column:
+                  name: booking_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_booking_id
+                    references: booking(id)
+
+  - changeSet:
+      id: insert bookingItem into the table
+      author: olegkatok
+      changes:
+        - insert:
+            tableName: booking_item
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: quantity
+                  value: 5
+              - column:
+                  name: goods_id
+                  value: 2
+              - column:
+                  name: booking_id
+                  value: 1
+        - insert:
+            tableName: booking_item
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: quantity
+                  value: 10
+              - column:
+                  name: goods_id
+                  value: 3
+              - column:
+                  name: booking_id
+                  value: 2
+        - insert:
+            tableName: booking_item
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: quantity
+                  value: 5
+              - column:
+                  name: goods_id
+                  value: 1
+              - column:
+                  name: booking_id
+                  value: 3
+        - insert:
+            tableName: booking_item
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: quantity
+                  value: 2
+              - column:
+                  name: goods_id
+                  value: 2
+              - column:
+                  name: booking_id
+                  value: 3
+
+  - changeSet:
+      id: add wareHouse table
+      author: olegkatok
+      changes:
+        - createTable:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reserve
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: goods_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fkf_goods_id
+                    references: goods(id)
+
+  - changeSet:
+      id: insert stored goods into the warehouse
+      author: olegkatok
+      changes:
+        - insert:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: reserve
+                  value: 100
+              - column:
+                  name: goods_id
+                  value: 1
+        - insert:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: reserve
+                  value: 150
+              - column:
+                  name: goods_id
+                  value: 2
+        - insert:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: reserve
+                  value: 49
+              - column:
+                  name: goods_id
+                  value: 3
+        - insert:
+            tableName: warehouse
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: reserve
+                  value: 9
+              - column:
+                  name: goods_id
+                  value: 4
