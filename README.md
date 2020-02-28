@@ -36,7 +36,7 @@ Fields:
 
 Links:
 * client;
-* aGoods
+* aGoodsDTO
 
 ## Goods (Товар):
 Единица продукции производимая фабрикой
@@ -147,7 +147,7 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/aGoods/timberGoods
+POST /componentsPlant/admin/aGoodsDTO/timberGoods
 ```
 ```json
 {
@@ -192,7 +192,7 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/aGoods/timberGoods/321
+POST /componentsPlant/admin/GoodsDTO/timberGoods/321
 ```
 ```json
 {

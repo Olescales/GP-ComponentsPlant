@@ -17,9 +17,6 @@ public class ClientControllerTest extends AbstractControllerTest {
     @Test
     public void testClientMakeOrderIsOk() throws Exception {
         // given
-        /*BDDMockito.willReturn(bookingDTOMapper.sourceToDestination(createOrderDTOInfo()))
-                .given(bookingRepository)
-                .save(bookingDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));*/
         // when
         mockMvc.perform(post("/clients/1/orders")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -46,7 +43,7 @@ public class ClientControllerTest extends AbstractControllerTest {
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
-                        "  \"bookingID\" : 4\n" +
+                        "  \"bookingID\" : 5\n" +
                         "}"));
     }
 
@@ -57,7 +54,7 @@ public class ClientControllerTest extends AbstractControllerTest {
         mockMvc.perform(delete("/clients/1/orders/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\n" +
-                        "  \"response\" : \"Заказ удалён!\"\n" +
+                        "  \"response\" : \"Order deleted!\"\n" +
                         "}"));
     }
 
@@ -65,18 +62,33 @@ public class ClientControllerTest extends AbstractControllerTest {
     public void testClientWatchOrdersStoryIsOk() throws Exception {
         // given
         // when
-        mockMvc.perform(get("/clients/1"))
+        mockMvc.perform(get("/clients/2"))
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().json("[\n" +
                         "{\n" +
-                        "  \"bookingID\" : 1,\n" +
-                        "  \"sum\" : 379.45,\n" +
+                        "  \"sum\" : 13005.80,\n" +
                         "  \"currency\" : \"BYN\",\n" +
-                        "  \"orderdate\" : \"22.02.2020\",\n" +
-                        "  \"wage\" : \"PREPAID\",\n" +
+                        "  \"orderdate\" : \"2020-02-22\",\n" +
+                        "  \"wage\" : \"POSTPONEMENT\",\n" +
                         "  \"condition\" : \"SHIPPED\",\n" +
-                        "  \"clientID\" : 1\n" +
+                        "  \"bookingID\" : 2\n" +
+                        "},\n" +
+                        "{\n" +
+                        "  \"sum\" : 7230.82,\n" +
+                        "  \"currency\" : \"BYN\",\n" +
+                        "  \"orderdate\" : \"2020-02-23\",\n" +
+                        "  \"wage\" : \"PREPAID\",\n" +
+                        "  \"condition\" : \"READYFORSHIPMENT\",\n" +
+                        "  \"bookingID\" : 3\n" +
+                        "},\n" +
+                        "{\n" +
+                        "  \"sum\" : 3735.46,\n" +
+                        "  \"currency\" : \"BYN\",\n" +
+                        "  \"orderdate\" : \"2020-02-27\",\n" +
+                        "  \"wage\" : \"PREPAID\",\n" +
+                        "  \"condition\" : \"ONAPPROVEMENT\",\n" +
+                        "  \"bookingID\" : 4\n" +
                         "}\n" +
                         "]"));
     }
@@ -84,46 +96,33 @@ public class ClientControllerTest extends AbstractControllerTest {
     @Test
     public void testClientUpdateOrderIsOk() throws Exception {
         // given
-        /*BDDMockito.willReturn(bookingDTOMapper.sourceToDestination(createOrderDTOInfo()))
-                .given(bookingRepository)
-                .save(bookingDTOMapper.sourceToDestination(createAnotherOrderDTOInfo()));*/
         // when
-        mockMvc.perform(post("/clients/1/orders/")
+        mockMvc.perform(post("/clients/1/orders/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "  \"sum\" : 19000,\n" +
+                        "  \"sum\" : 16000,\n" +
                         "  \"currency\" : \"BYR\",\n" +
-                        "  \"clientID\" : 1,\n" +
+                        "  \"orderdate\" : \"2020-02-22\",\n" +
+                        "  \"wage\" : \"POSTPONEMENT\",\n" +
+                        "  \"condition\" : \"ONAPPROVEMENT\",\n" +
                         "  \"goods\" : [\n {  " +
-                        "  \"commodity\" : {\n" +
-                        "  \"name\" : \"bottle\",\n" +
-                        "  \"type\" : \"glassGoods\",\n" +
-                        "  \"releaseCost\" : 200,\n" +
-                        "  \"stockNumber\" : 111\n" +
-                        "  }, \"quantity\" : 10\n" +
+                        "  \"goodsID\" : 1,\n" +
+                        "   \"quantity\" : 10\n" +
                         "  },\n" +
                         "{\n" +
-                        "  \"commodity\" : {\n" +
-                        "  \"name\" : \"barrel\",\n" +
-                        "  \"type\" : \"woodGoods\",\n" +
-                        "  \"releaseCost\" : 1000,\n" +
-                        "  \"stockNumber\" : 207\n" +
-                        "  }, \"quantity\" : 6\n" +
+                        "   \"goodsID\" : 3,\n" +
+                        "   \"quantity\" : 5\n" +
                         "  },\n" +
                         "{\n" +
-                        "  \"commodity\" : {\n" +
-                        "  \"name\" : \"dispenser\",\n" +
-                        "  \"type\" : \"metalGoods\",\n" +
-                        "  \"releaseCost\" : 2500,\n" +
-                        "  \"stockNumber\" : 319\n" +
-                        "  }, \"quantity\" : 2\n" +
+                        "   \"goodsID\" : 4,\n" +
+                        "   \"quantity\" : 2\n" +
                         "  }\n" +
                         "] \n" +
                         "}"))
                 // then
                 .andExpect(status().isCreated())
                 .andExpect(content().json("{\n" +
-                        "  \"bookingID\" : 4\n" +
+                        "  \"response\" : \"Order updated!\"\n" +
                         "}"));
     }
 }

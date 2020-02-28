@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class AuthClientResponse {
-    private Goods id;
+    private GoodsDTO id;
 }

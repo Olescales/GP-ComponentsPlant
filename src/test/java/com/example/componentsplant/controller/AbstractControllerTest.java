@@ -5,6 +5,8 @@ import com.example.componentsplant.dto.EmployeeSignInResponse;
 import com.example.componentsplant.entity.AuthInfoEntity;
 import com.example.componentsplant.entity.UserEntity;
 import com.example.componentsplant.repository.AuthInfoRepository;
+import com.example.componentsplant.repository.BookingRepository;
+import com.example.componentsplant.repository.GoodsRepository;
 import com.example.componentsplant.repository.UserRepository;
 import com.example.componentsplant.security.UserRole;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,8 +43,10 @@ public abstract class AbstractControllerTest {
     protected AuthInfoRepository authInfoRepository;
     @MockBean
     protected UserRepository userRepository;
-   /* @MockBean
-    protected BookingRepository bookingRepository;*/
+    /*@MockBean*/
+    protected BookingRepository bookingRepository;
+    /*@MockBean*/
+    protected GoodsRepository goodsRepository;
 
 
     protected String signInAsClientEmployee() throws Exception {

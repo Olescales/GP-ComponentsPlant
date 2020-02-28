@@ -12,5 +12,9 @@ public interface BookingRepository extends JpaRepository<BookingEntity,Long> {
 
     List<BookingEntity> findBookingEntitiesByClient_Id (Long id);
 
+    List<BookingEntity> findBookingEntitiesByCondition (String condition);
+
     BookingEntity findBookingEntityById (Long id);
+
+
 }

@@ -1,11 +1,15 @@
 package com.example.componentsplant.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class Goods {
+@AllArgsConstructor
+@NoArgsConstructor
+public class GoodsDTO {
 
     private Long goodsID;
     private String name;

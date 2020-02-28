@@ -17,6 +17,7 @@ public class BookingDTO {
     private String wage;
     private Long clientID;
     private String condition;
+    private Long bookingID;
     private List<BookingItemDTO> goods;
 
 }

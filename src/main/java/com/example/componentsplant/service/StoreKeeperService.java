@@ -10,8 +10,7 @@ import java.util.List;
 public class StoreKeeperService {
 
     public List<BookingDTO> watchOrders() {
-        List<BookingDTO> orderDTOList = new ArrayList<>();
-        return orderDTOList;
+        return new ArrayList<>();
 
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class ClientDTO {
-    private Goods clientID;
+    private GoodsDTO clientID;
     private String name;
     private String legaladdress;
     private String payernumber;

@@ -9,7 +9,7 @@
             columns:
               - column:
                   name: id
-                  type: BIGINT
+                  type: INT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -363,7 +363,30 @@
               - column:
                   name: client_id
                   value: 2
-
+        - insert:
+            tableName: booking
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: sum
+                  value: 3735.46 # 1 Dispenser + 5 Bottle
+              - column:
+                  name: currency
+                  value: "BYN"
+              - column:
+                  name: orderdate
+                  value: '2020-02-27'
+              - column:
+                  name: wage
+                  value: "PREPAID"
+              - column:
+                  name: condition
+                  value: "ONAPPROVEMENT"
+              - column:
+                  name: client_id
+                  value: 2
   - changeSet:
       id: add bookingItem table
       author: olegkatok

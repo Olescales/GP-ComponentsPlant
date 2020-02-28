@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MakeOrderResponse {
-    private GoodsDTO id;
+public class GoodsNumberDTO {
+
+    private Long goodsID;
 }

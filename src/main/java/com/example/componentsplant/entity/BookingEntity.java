@@ -13,7 +13,7 @@ import java.util.List;
 public class BookingEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY  )
     private Long id;
 
     private Double sum;

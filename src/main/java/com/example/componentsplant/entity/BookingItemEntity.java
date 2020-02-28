@@ -9,11 +9,11 @@ import javax.persistence.*;
 public class BookingItemEntity {
 
         @Id
-        @GeneratedValue (strategy = GenerationType.AUTO)
+        @GeneratedValue (strategy = GenerationType.IDENTITY)
         private Long id;
         private Integer quantity;
 
-        @ManyToOne
+        @ManyToOne (cascade = CascadeType.ALL)
         @JoinColumn (name = "goods_id", nullable = false)
         private GoodsEntity commodity;
 

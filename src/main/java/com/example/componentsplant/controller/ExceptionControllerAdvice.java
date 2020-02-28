@@ -1,6 +1,8 @@
 package com.example.componentsplant.controller;
 
 
+import com.example.componentsplant.exception.NoSuchBookings;
+import com.example.componentsplant.exception.NotEnoughGoodsInTheStock;
 import com.example.componentsplant.exception.SuchClientAlreadyExistsException;
 import lombok.Data;
 import lombok.extern.java.Log;
@@ -18,7 +20,9 @@ public class ExceptionControllerAdvice {
 
     @ExceptionHandler(
             {SuchClientAlreadyExistsException.class,
-                    UsernameNotFoundException.class})
+                    UsernameNotFoundException.class,
+                    NoSuchBookings.class,
+                    NotEnoughGoodsInTheStock.class})
     private ResponseEntity<ErrorMessage> handleBadRequest(final Exception e) {
         log.log(Level.SEVERE, e.getMessage(), e);
         return new ResponseEntity<>(new ErrorMessage(e.getMessage()), HttpStatus.BAD_REQUEST);
