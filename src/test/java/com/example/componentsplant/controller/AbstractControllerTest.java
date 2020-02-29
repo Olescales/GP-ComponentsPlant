@@ -43,9 +43,9 @@ public abstract class AbstractControllerTest {
     protected AuthInfoRepository authInfoRepository;
     @MockBean
     protected UserRepository userRepository;
-    /*@MockBean*/
+
     protected BookingRepository bookingRepository;
-    /*@MockBean*/
+
     protected GoodsRepository goodsRepository;
 
 

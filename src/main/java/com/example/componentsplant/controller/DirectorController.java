@@ -1,12 +1,14 @@
 package com.example.componentsplant.controller;
 
 import com.example.componentsplant.dto.BookingAggregator;
-import com.example.componentsplant.dto.BookingDTO;
+import com.example.componentsplant.dto.GoodsDTO;
 import com.example.componentsplant.service.DirectorService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Data
 @RestController
@@ -15,10 +17,10 @@ public class DirectorController {
 
     private final DirectorService directorService;
 
-    @GetMapping(value = "/{glassGoods}")
+    @GetMapping(value = "")
     @ResponseStatus(HttpStatus.OK)
-    public BookingAggregator watchProfitGlassGoods(@PathVariable("glassGoods") final String glassGoods, @RequestBody final BookingDTO request) {
-        return directorService.watchProfitGlassGoods(glassGoods, request);
+    public List<GoodsDTO> watchAssortmentOfGoodsByType(@RequestParam(value="type",required = false) final String type) {
+        return directorService.watchAssortmentOfGoodsByType(type);
     }
 
     @PostMapping(value = "")

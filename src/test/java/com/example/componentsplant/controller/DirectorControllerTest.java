@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DirectorControllerTest extends AbstractControllerTest {
 
     @Test
-    public void directorWatchAmountOfOrdersPerFebruaryIsOk () throws Exception {
+    public void directorWatchAmountOfOrdersPerFebruaryIsOk() throws Exception {
         mockMvc.perform(post("/director/orders")
                 .param("orderdate", "2020-02-22"))
                 //then
@@ -23,14 +23,22 @@ public class DirectorControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void directorWatchProfitOfOrdersOfGlassGoodsPerFebruaryIsOk () throws Exception {
-        mockMvc.perform(get("/director/orders/{glassGoods}"))
+    public void directorWatchAssortmentOfGlassGoods() throws Exception {
+        mockMvc.perform(get("/director/orders")
+                .param("type", "glassGoods"))
                 //then
                 .andExpect(status().isOk())
                 .andExpect(content().json(
-                        "{\n" +
-                                "  \"totalSumOfOrders\" : 25000\n" +
-                                "}"
+                        "[\n" +
+                                            "{\n" +
+                                            "  \"name\" : \"Bottle\",\n" +
+                                            "  \"description\" : \"For liquids\"\n" +
+                                            " },\n   " +
+                                            "{\n" +
+                                            "  \"name\" : \"Glass\",\n" +
+                                            "  \"description\" : \"For liquids\"\n" +
+                                            " }" +
+                                    "] \n"
                 ));
     }
 }

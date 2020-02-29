@@ -261,32 +261,39 @@ Response: ```200 OK```
 ]
 ```
 
-## CP-8 Как "директор" хочу посмотреть сумму всех сделок по предоплате за февраль;
+## CP-8 Как "директор" хочу посмотреть сумму всех сделок  за 22 февраля;
 
 Request:
 ```
-GET /componentsPlant/director/orders/prepaidOrders
+POST /componentsPlant/director/orders?orderdate=2020-02-22
 ```
 Response: ```200 OK```
 
 ```json
 {
-    "totalSumOfOrders" : 123456
+    "totalSumOfOrders" : 13385.25
 }
 ```
 
-## CP-9 Как "директор" хочу посмотреть прибыль за февраль по категории стеклянные изделия;
+## CP-9 Как "директор" хочу посмотреть ассортимент стеклянных изделий;
 
 Request:
 ```
-GET /componentsPlant/director/orders/prepaidOrders/{glassGoods}
+POST /componentsPlant/director/orders?type=glassGoods
 ```
 Response: ```200 OK```
 
 ```json
+[
 {
-    "totalSumOfProfit" : 25000
+    "name" : "Bottle",
+    "description" : "For liquids"
+},
+{
+    "name" : "Bottle",
+    "description" : "For liquids"
 }
+]
 ```
 
 ## CP-10 Как "кладовщик" хочу посмотреть список всех собранных заказов 

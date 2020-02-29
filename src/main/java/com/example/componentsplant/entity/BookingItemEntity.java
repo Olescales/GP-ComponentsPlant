@@ -13,7 +13,7 @@ public class BookingItemEntity {
         private Long id;
         private Integer quantity;
 
-        @OneToOne (cascade = {CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.DETACH})
+        @ManyToOne (cascade = {CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.DETACH})
         @JoinColumn (name = "goods_id", nullable = false)
         private GoodsEntity commodity;
 
