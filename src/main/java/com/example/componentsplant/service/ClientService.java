@@ -1,7 +1,6 @@
 package com.example.componentsplant.service;
 
 import com.example.componentsplant.dto.BookingDTO;
-import com.example.componentsplant.dto.BookingItemDTO;
 import com.example.componentsplant.dto.BookingNumberDTO;
 import com.example.componentsplant.dto.Message;
 import com.example.componentsplant.entity.*;
@@ -31,36 +30,34 @@ public class ClientService {
     private final BookingItemMapper bookingItemMapper;
 
     public BookingNumberDTO makeOrder(final Long clientID, final BookingDTO request) throws NotEnoughGoodsInTheStock {
-        ClientEntity clientEntity = clientRepository.getClientEntityById(clientID);
-        List<BookingItemEntity> bookingItemEntityList = request.getGoods().stream().map(bookingItemMapper::sourceToDestination).collect(Collectors.toList());
-        for (BookingItemEntity bookingItemEntity : bookingItemEntityList) {
-            Long id = bookingItemEntity.getCommodity().getId();
-            GoodsEntity goodsEntity = goodsRepository.getGoodsEntityById(id);
-            bookingItemEntity.setCommodity(goodsEntity);
-        }
-        final List<BookingItemDTO> bookingItemDTOS = request.getGoods();
-        for (final BookingItemDTO items : bookingItemDTOS) {
-            final Long goodsID = items.getGoodsID();
-            final Integer quantity = items.getQuantity();
-            if (!checkStockAvailability(goodsID, quantity)) {
+        final BookingEntity bookingEntity = bookingDTOMapper.sourceToDestination(request);
+        bookingEntity.setClient(clientRepository.getClientEntityById(clientID));
+
+        final List<BookingItemEntity> bookingItemEntityList = request.getGoods().stream().map(bookingItemMapper::sourceToDestination).collect(Collectors.toList());
+        for (final BookingItemEntity bookingItemEntity : bookingItemEntityList) {
+            Long goodsID = bookingItemEntity.getCommodity().getId();
+            Integer quantity = bookingItemEntity.getQuantity();
+            if (!checkGoodsAvailability(goodsID, quantity)) {
                 final GoodsEntity goodsEntity = goodsRepository.getGoodsEntityById(goodsID);
                 throw new NotEnoughGoodsInTheStock("Insufficient reserve of goods: " + goodsEntity.getName());
             }
+            final GoodsEntity goodsEntity = goodsRepository.getGoodsEntityById(goodsID);
+            bookingItemEntity.setCommodity(goodsEntity);
         }
-        final BookingEntity bookingEntity = bookingDTOMapper.sourceToDestination(request);
-        bookingEntity.setClient(clientEntity);
         bookingEntity.setBookingItemEntities(bookingItemEntityList);
+
         bookingEntity.getBookingItemEntities().forEach(
                 bookingItemEntity -> bookingItemEntity.setBookingEntity(bookingEntity));
+
         return BookingNumberDTO.builder()
                 .bookingID(bookingRepository.save(bookingEntity).getId())
                 .build();
     }
 
-    public boolean checkStockAvailability(final Long goodsID, final Integer quantity) {
+    public boolean checkGoodsAvailability(final Long goodsID, final Integer quantity) {
         final WareHouseEntity wareHouseEntity = wareHouseRepository.getWareHouseEntityByGoodsEntity_Id(goodsID);
         final Long reserve = wareHouseEntity.getReserve();
-        return quantity < reserve;
+        return quantity <= reserve;
     }
 
 
