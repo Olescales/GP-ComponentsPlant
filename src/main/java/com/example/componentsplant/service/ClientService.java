@@ -2,6 +2,7 @@ package com.example.componentsplant.service;
 
 import com.example.componentsplant.dto.BookingDTO;
 import com.example.componentsplant.dto.BookingNumberDTO;
+import com.example.componentsplant.dto.GoodsDTO;
 import com.example.componentsplant.dto.Message;
 import com.example.componentsplant.entity.BookingEntity;
 import com.example.componentsplant.entity.BookingItemEntity;
@@ -10,6 +11,7 @@ import com.example.componentsplant.entity.WareHouseEntity;
 import com.example.componentsplant.exception.NotEnoughGoodsInTheStock;
 import com.example.componentsplant.mapper.BookingDTOMapper;
 import com.example.componentsplant.mapper.BookingItemMapper;
+import com.example.componentsplant.mapper.GoodsMapper;
 import com.example.componentsplant.repository.BookingRepository;
 import com.example.componentsplant.repository.ClientRepository;
 import com.example.componentsplant.repository.GoodsRepository;
@@ -27,7 +29,8 @@ public class ClientService {
     private final BookingRepository bookingRepository;
     private final WareHouseRepository wareHouseRepository;
     private final GoodsRepository goodsRepository;
-    private ClientRepository clientRepository;
+    private final GoodsMapper goodsMapper;
+    private final ClientRepository clientRepository;
 
     private final BookingDTOMapper bookingDTOMapper;
     private final BookingItemMapper bookingItemMapper;
@@ -36,7 +39,8 @@ public class ClientService {
         final BookingEntity bookingEntity = bookingDTOMapper.sourceToDestination(request);
         bookingEntity.setClient(clientRepository.getClientEntityById(clientID));
 
-        final List<BookingItemEntity> bookingItemEntityList = request.getGoods().stream().map(bookingItemMapper::sourceToDestination).collect(Collectors.toList());
+        final List<BookingItemEntity> bookingItemEntityList =
+            request.getGoods().stream().map(bookingItemMapper::sourceToDestination).collect(Collectors.toList());
         for (final BookingItemEntity bookingItemEntity : bookingItemEntityList) {
             Long goodsID = bookingItemEntity.getCommodity().getId();
             Integer quantity = bookingItemEntity.getQuantity();
@@ -50,11 +54,11 @@ public class ClientService {
         bookingEntity.setBookingItemEntities(bookingItemEntityList);
 
         bookingEntity.getBookingItemEntities().forEach(
-                bookingItemEntity -> bookingItemEntity.setBookingEntity(bookingEntity));
+            bookingItemEntity -> bookingItemEntity.setBookingEntity(bookingEntity));
 
         return BookingNumberDTO.builder()
-                .bookingID(bookingRepository.save(bookingEntity).getId())
-                .build();
+            .bookingID(bookingRepository.save(bookingEntity).getId())
+            .build();
     }
 
     public boolean checkGoodsAvailability(final Long goodsID, final Integer quantity) {
@@ -77,6 +81,9 @@ public class ClientService {
     public List<BookingDTO> watchOrderStory(final Long clientID) {
         final List<BookingEntity> bookingEntities = bookingRepository.findBookingEntitiesByClient_Id(clientID);
         return bookingEntities.stream().map(bookingDTOMapper::destinationToSource).collect(Collectors.toList());
+    }
 
+    public List<GoodsDTO> showGoods() {
+        return goodsRepository.findAll().stream().map(goodsMapper::destinationToSource).collect(Collectors.toList());
     }
 }
