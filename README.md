@@ -296,47 +296,35 @@ Response: ```200 OK```
 ]
 ```
 
-## CP-10 Как "кладовщик" хочу посмотреть список всех собранных заказов 
+## CP-10 Как "клиент" хочу посмотреть ассортимент товаров фабрики 
 
 Request:
 ```
-GET /componentsPlant/storeKeeper/orders
+GET /componentsPlant/clients/2/goods
 ```
 Response: ```200 OK```
 
 ```json
 [
-        {
-                "orderID" : 1,
-                "goodsList" : [ 
-                {
-                        "Goods" : {
-                        "stockNumber" : 10000
-                        },
-                        "quantity" : 3
-                },
-                {
-                        "Goods" : {
-                         "stockNumber": 30000
-                        },
-                        "quantity" : 5
-                }
-                ],
-                "bookingCondition" : "READYFORSHIPMENT",
-                "clientID" : 1
+         {
+                "name" : "Bottle",
+                "desription" : "For liquids",
+                "releasecost" : 48.02
          },
          {
-                "orderID" : 2,
-                "goodsList" : [ 
-                {
-                        "Goods" : {
-                        "stockNumber" : 10001
-                        },
-                        "quantity" : 7
-                }
-                ],
-                "bookingCondition" : "READYFORSHIPMENT",
-                "clientID" : 1
+                "name" : "Glass",
+                "desription" : "For liquids",
+                "releasecost" : 75.89
+         },
+         {
+                "name" : "Barrel",
+                "desription" : "For spirits",
+                "releasecost" : 1300.58
+         },
+         {
+                "name" : "Dispencer",
+                "desription" : "For pouring beer",
+                "releasecost" : 3495.36
          }
 ]
 ```
