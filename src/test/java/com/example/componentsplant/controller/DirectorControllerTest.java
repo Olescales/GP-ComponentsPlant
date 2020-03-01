@@ -30,15 +30,15 @@ public class DirectorControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         "[\n" +
-                                            "{\n" +
-                                            "  \"name\" : \"Bottle\",\n" +
-                                            "  \"description\" : \"For liquids\"\n" +
-                                            " },\n   " +
-                                            "{\n" +
-                                            "  \"name\" : \"Glass\",\n" +
-                                            "  \"description\" : \"For liquids\"\n" +
-                                            " }" +
-                                    "] \n"
+                                "{\n" +
+                                "  \"name\" : \"Bottle\",\n" +
+                                "  \"description\" : \"For liquids\"\n" +
+                                " },\n   " +
+                                "{\n" +
+                                "  \"name\" : \"Glass\",\n" +
+                                "  \"description\" : \"For liquids\"\n" +
+                                " }" +
+                                "] \n"
                 ));
     }
 }
