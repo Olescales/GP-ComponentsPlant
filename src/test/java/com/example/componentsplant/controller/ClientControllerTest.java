@@ -89,39 +89,6 @@ public class ClientControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testClientUpdateOrderIsOk() throws Exception {
-        // given
-        // when
-        mockMvc.perform(post("/clients/1/orders/1")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content("{\n" +
-                                     "  \"sum\" : 16000,\n" +
-                                     "  \"currency\" : \"BYR\",\n" +
-                                     "  \"orderdate\" : \"2020-02-22\",\n" +
-                                     "  \"wage\" : \"POSTPONEMENT\",\n" +
-                                     "  \"condition\" : \"ONAPPROVEMENT\",\n" +
-                                     "  \"goods\" : [\n {  " +
-                                     "  \"goodsID\" : 1,\n" +
-                                     "   \"quantity\" : 10\n" +
-                                     "  },\n" +
-                                     "{\n" +
-                                     "   \"goodsID\" : 3,\n" +
-                                     "   \"quantity\" : 5\n" +
-                                     "  },\n" +
-                                     "{\n" +
-                                     "   \"goodsID\" : 4,\n" +
-                                     "   \"quantity\" : 2\n" +
-                                     "  }\n" +
-                                     "] \n" +
-                                     "}"))
-            // then
-            .andExpect(status().isCreated())
-            .andExpect(content().json("{\n" +
-                                      "  \"response\" : \"Order updated!\"\n" +
-                                      "}"));
-    }
-
-    @Test
     public void testClientShowGoodsIsOk() throws Exception {
         // given
         // when
@@ -150,5 +117,6 @@ public class ClientControllerTest extends AbstractControllerTest {
                                       "  \"releasecost\" : 3495.36\n" +
                                       "}\n" +
                                       "]"));
+
     }
 }

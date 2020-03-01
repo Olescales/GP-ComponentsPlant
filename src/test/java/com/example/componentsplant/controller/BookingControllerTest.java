@@ -1,15 +1,9 @@
 package com.example.componentsplant.controller;
 
 
-import org.junit.jupiter.api.Test;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 public class BookingControllerTest extends AbstractControllerTest {
 
-    @Test
+    /*@Test
     public void testWatchOrderByIDIsOk() throws Exception {
         // given
         // when
@@ -25,5 +19,5 @@ public class BookingControllerTest extends AbstractControllerTest {
                                 "  \"condition\" : \"SHIPPED\",\n" +
                                 "  \"clientID\" : 1\n" +
                                 "}\n"));
-    }
+    }*/
 }
