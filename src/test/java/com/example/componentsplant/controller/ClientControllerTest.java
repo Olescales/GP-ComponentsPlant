@@ -1,8 +1,6 @@
 package com.example.componentsplant.controller;
 
-import com.example.componentsplant.mapper.BookingDTOMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -10,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ClientControllerTest extends AbstractControllerTest {
-    
-    protected BookingDTOMapper bookingDTOMapper;
 
     @Test
     public void testClientMakeOrderIsOk() throws Exception {

@@ -14,7 +14,7 @@ public class AdminControllerTest extends AbstractControllerTest {
     public void testAdminCreateGoodsIsOk() throws Exception {
         // given
         // when
-        mockMvc.perform(post("/admin/goods/timberGoods")
+        mockMvc.perform(post("/admin/goods")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "  \"name\" : \"barrel\",\n" +
@@ -55,7 +55,7 @@ public class AdminControllerTest extends AbstractControllerTest {
     public void testAdminChangeGoodsPriceIsOk() throws Exception {
         // given
         // when
-        mockMvc.perform(post("/admin/goods/321")
+        mockMvc.perform(post("/admin/goods/5")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "  \"name\" : \"barrel\",\n" +

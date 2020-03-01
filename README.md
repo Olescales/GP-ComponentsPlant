@@ -103,20 +103,31 @@ POST /componentsPlant/clients/1/orders
 ```
 ```json
 {
-        "goodsMap" : {
-                  "345" : "10",
-                 "232" : "5",
-                 "122" : "2"
-        },
-        "sum" : 16000,
-        "currency" : "BYR",
-        "clientId" : 1
+                  "sum" : 16000,
+                  "currency" : "BYR",
+                  "orderdate" : "2020-02-22",
+                  "wage" : "PREPAID",
+                  "condition" : "ONAPROVEMENT",
+                  "goods" : 
+                  [ {
+                  "goodsID" : 1,
+                  "quantity" : 10
+                  },
+                    {
+                  "goodsID" : 3,
+                  "quantity" : 5
+                  },
+                    {
+                  "goodsID" : 4,
+                  "quantity" : 2
+                  }
+                  ]
 }
 ```
 Response: ```201 Created```
 ```json
 {
-    "orderID" : 123
+    "bookingID" : 5
 }
 ```
 
@@ -125,20 +136,34 @@ Response: ```201 Created```
 Request:
 
 ```
-GET /componentsPlant/clients/1/
+GET /componentsPlant/clients/2
 ```
 Response: ```200 OK```
 ```json
 [
         {
-                "orderID" : 1,
-                "sum" : 1000,
-                "bookingCondition" : "SHIPPED"
+                "sum" : 13005.80,
+                "currency" : "BYN",
+                "orderdate" : "2020-02-22",
+                "wage" : "POSTPONEMENT",
+                "condition" : "SHIPPED",
+                "bookingID" : 2
         },
         {
-                "orderID" : 2,
-                "sum" : 2500,
-                "bookingCondition" : "READYFORSHIPMENT"
+                "sum" : 7230.82,
+                "currency" : "BYN",
+                "orderdate" : "2020-02-23",
+                "wage" : "PREPAID",
+                "condition" : "READYFORSHIPMENT",
+                "bookingID" : 3
+        },
+        {
+                "sum" : 3735.46,
+                "currency" : "BYN",
+                "orderdate" : "2020-02-27",
+                "wage" : "PREPAID",
+                "condition" : "ONAPPROVEMENT",
+                "bookingID" : 4
         }
 ]
 ```
@@ -147,20 +172,22 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/aGoodsDTO/timberGoods
+POST /componentsPlant/admin/goods
 ```
 ```json
 {
     "name" : "barrel",
     "type" : "timberGoods",
     "description" : "forStout",
-    "releaseCost" : "1000"
+    "netcost" : 750,
+    "releasecost" : 1000,
+    "stocknumber" : 20001
 }
 ```
 Response: ```200 OK```
 ```json
 {
-    "storeID" : 321
+    "goodsID" : 5
 }
 ```
 
@@ -175,16 +202,12 @@ Response: ```200 OK```
 ```json
 [
         {
-                "orderID" : 43,
-                "sum" : 1230,
-                "bookingCondition" : "ONAPPROVEMENT",
-                "clientID" : 1
-        },
-        {
-                "orderID" : 32,
-                "sum" : 1470,
-                "bookingCondition" : "ONAPPROVEMENT",
-                "clientID" : 2
+                "sum" : 3735.46,
+                "currency" : "BYN",
+                "orderdate" : "2020-02-27",
+                "wage" : "PREPAID",
+                "condition" : "ONAPPROVEMENT",
+                "bookingID" : 4
         }
 ]
 ```
@@ -192,72 +215,42 @@ Response: ```200 OK```
 
 Request:
 ```
-POST /componentsPlant/admin/GoodsDTO/timberGoods/321
+POST /componentsPlant/admin/goods/321
 ```
 ```json
 {
     "name" : "barrel",
     "type" : "timberGoods",
     "description" : "forStout",
-    "releaseCost" : "900"
+    "netcost" : 750,
+    "releasecost" : 1100,
+    "stocknumber" : 20001
 }
 ```
 Response: ```200 OK```
 
 ```json
 {
-    "responce" : "Price changed."
+    "responce" : "The changes are saved."
 }
 ```
 
-## CP-7 Как "кладовщик" хочу посмотреть список текущих заказов на отгрузку 
+## CP-7 Как "кладовщик" хочу посмотреть список заказов утвержденных к сборке 
 
 Request:
 ```
-GET /componentsPlant/storeKeeper/orders
+POST /componentsPlant/storeKeeper/orders
 ```
 Response: ```200 OK```
 
 ```json
 [
         {
-                "orderID" : 41,
-                "goodsList" : [ 
-                {
-                        "Goods" : {
-                        "storeID" : 111
-                        },
-                        "quantity" : 10
-                },
-                {
-                        "Goods" : {
-                        "storeID" : 207
-                        },
-                        "quantity" : 5
-                }
-                ],
-                "bookingCondition" : "ASSEMBLING",
-                "clientID" : 41
-         },
-         {
-                "orderID" : 23,
-                "goodsList" : [ 
-                {
-                        "Goods" : {
-                        "storeID" : 117
-                        },
-                        "quantity" : 11
-                },
-                {
-                        "Goods" : {
-                        "storeID" : 189
-                        },
-                        "quantity" : 4
-                }
-                ],
-                "bookingCondition" : "ASSEMBLING",
-                "clientID" : 52
-         }
+          "orderdate" : "2020-02-27",
+          "clientID" : 2,
+          "condition" : "ONAPPROVEMENT",
+          "bookingID" : 4
+        }
 ]
 ```
 
@@ -329,20 +322,16 @@ Response: ```200 OK```
 ]
 ```
 
-## CP-11 Как "директор" хочу посмотреть список всех клиентов фабрики;
+## CP-11 Как "клиент" хочу удалить мой заказ;
 
 Request:
+
 ```
-GET /componentsPlant/director/clients
+GET /componentsPlant/clients/1/orders/1
 ```
 Response: ```200 OK```
-
 ```json
-
 {
-     "clientID" : 1,
-     "clientID" : 2,
-     "clientID" : 3
+                "response" : "Order deleted!"
 }
-
 ```

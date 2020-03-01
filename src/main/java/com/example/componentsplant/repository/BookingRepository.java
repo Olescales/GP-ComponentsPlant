@@ -16,7 +16,10 @@ public interface BookingRepository extends JpaRepository<BookingEntity,Long> {
 
     List<BookingEntity> findBookingEntitiesByCondition (String condition);
 
+    List<BookingEntity> findByCondition (String condition);
+
     BookingEntity findBookingEntityById (Long id);
+
 
     @Query(value = "SELECT SUM(booking.sum) FROM booking WHERE booking.orderdate = ?1", nativeQuery = true)
     Double findSumByOrderdate (LocalDate orderdate);

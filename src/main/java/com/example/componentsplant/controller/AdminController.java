@@ -35,7 +35,7 @@ public class AdminController {
         return adminService.watchOrdersByCondition(condition);
     }
 
-    @PostMapping(value = "/goods/timberGoods")
+    @PostMapping(value = "/goods")
     @ResponseStatus(HttpStatus.CREATED)
     public GoodsNumberDTO createGoods (@RequestBody GoodsDTO request) {
         log.info(request.toString());
